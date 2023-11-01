@@ -23,9 +23,14 @@ public class LoginPage {
 
     @FindBy(xpath="//*[@id='password']")
     public WebElement password;
-
     @FindBy(xpath = "//button[text()='Login']")
     public WebElement loginButton;
+
+    @FindBy(xpath = "//h3")
+    public WebElement adminManagementDogrulama;
+
+    @FindBy(xpath = "(//*[@type='button'])[1]")
+    public WebElement menuButton;
 
 
 
