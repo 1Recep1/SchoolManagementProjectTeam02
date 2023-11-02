@@ -14,7 +14,7 @@ import utilities.ReusableMethods;
 
 public class US05_StepDef {
     LoginPage loginPage = new LoginPage();
-got    Actions actions = new Actions(Driver.getDriver());
+    Actions actions = new Actions(Driver.getDriver());
 
     @Given("Kullanici {string} sayfasina gider.")
     public void kullaniciSayfasinaGider(String url) {
@@ -82,9 +82,7 @@ got    Actions actions = new Actions(Driver.getDriver());
     public void adminDeanListTeUserNameBilgileriniGorur() {
     }
 
-    @And("Sayfayi kapatir")
-    public void sayfayiKapatir() {
-    }
+
 
     @And("Admin liste yaninda Sil butonun tiklar")
     public void adminListeYanindaSilButonunTiklar() {
