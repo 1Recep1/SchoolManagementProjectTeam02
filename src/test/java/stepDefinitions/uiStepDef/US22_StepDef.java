@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class US22_StepDef {
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage;
     LessonPage lessonPage = new LessonPage();
     AdminPage adminPage=new AdminPage();
     Faker faker=new Faker();
@@ -29,20 +29,21 @@ public class US22_StepDef {
     String dateofBirth2= format.format(dateofBirth1);
 
     String phone=faker.number().numberBetween(100,999)+"-"+
-                 faker.number().numberBetween(100,999)+"-"+
-                 faker.number().numberBetween(1000,9999);
+            faker.number().numberBetween(100,999)+"-"+
+            faker.number().numberBetween(1000,9999);
     String ssn=faker.number().numberBetween(100,999)+"-"+
-               faker.number().numberBetween(10,99)+"-"+
-               faker.number().numberBetween(1000,9999);
+            faker.number().numberBetween(10,99)+"-"+
+            faker.number().numberBetween(1000,9999);
 
     String ssn3v5=faker.number().numberBetween(100,999)+""+
             faker.number().numberBetween(10,99)+""+
             faker.number().numberBetween(1000,9999);
     String userName=faker.name().username();
-    String password=faker.internet().password(6,20,true,false,true)+ "1a";
+    String password=faker.internet().password(6,20,true,false,true)+ "1Aa";
     String password7=faker.internet().password(5,20,true,false,true)+ "1a";
     @Then("Kullanici Admin olarak login olurRA")
     public void kullaniciAdminOlarakLoginOlurRA() {
+        loginPage = new LoginPage();
         loginPage.login.click();
         loginPage.username.sendKeys(ConfigReader.getProperty("adminUsername"), Keys.TAB,
                 ConfigReader.getProperty("adminPassword"));
@@ -81,7 +82,7 @@ public class US22_StepDef {
         Assert.assertTrue(adminPage.savedAdminRA.getText().
                 contains("Admin Saved"));
     }
-    
+
     @Given("Name bos birakilir, Surname, Birth Place, Cinsiyet, Phone Number, Date of Birth, SSN, User Name, Password girilirRA")
     public void nameBosBirakilirSurnameBirthPlaceCinsiyetPhoneNumberDateOfBirthSSNUserNamePasswordGirilirRA() {
         adminPage.surnamenameAdminRA.sendKeys(
