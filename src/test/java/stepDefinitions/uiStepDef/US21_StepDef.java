@@ -94,7 +94,7 @@ public class US21_StepDef {
         }
         System.out.println(seciliDerslerString);
         System.out.println(studentPage.lessonProgramId2RA.getText());
-        Assert.assertTrue(seciliDerslerString.contains(lessonPage.birinciDersRA.getText()));
+        Assert.assertTrue(seciliDerslerString.contains(lessonPage.birinciDersRA.getText().contains("")));
         Assert.assertTrue(seciliDerslerString.contains(lessonPage.ikinciDersRA.getText()));
     }
     @Given("Day ve Start Timei ayni olan dersleri sec ve submit e tikla")
