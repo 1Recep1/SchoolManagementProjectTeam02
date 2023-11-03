@@ -4,62 +4,37 @@ package hook;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import org.junit.Ignore;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utilities.Driver;
-import static baseUrl.ManagementSchoolUrl.*;
-
 
 
 public class Hooks {
+
+    /*
+    Hooks class'i ile scenariolardan önce veya sonra çalışmasını istediğimiz kodları (örneğin scenariolardan önce
+database bağlantısı gibi yada scenariolardan sonra fail olan scenarioların resmini rapora ekleme gibi) @Before
+ve @After (io.cucumber) methodları ile oluşturabiliriz. Eğer Hooks class'ını farklı bir package altında oluşturmak
+istersek Runner class'ındaki glue parametresine bu package'ı eklememiz gerekir. glue parametresinde stepDefinitions
+package'ı yeraldığı için fazladan package oluşturmamak adına biz stepDefinitions package'ı altına Hooks class'ını
+oluşturduk. Eğer sadece istediğimiz bir scenariodan önce çalışmasını istediğimiz bir kod olursa @Before notasyonuna
+parametre olarak scenario'ya verdiğimiz tag'ı yazarız. Dolayısıyla sadece tag'ı belirttiğimiz @Before methodu
+scenariodan önce devreye girer.
+ */
+
     @Before
-    public void setUp() throws Exception {
-        System.out.println("Scenariolar calismaya basladi");
-    }
-    @Before("@admin")// @Before("@TC01_Api") boyle yazarsak sadece bir test case calisir
-    public void beforeApiAdmin() {
-
-        System.out.println("Before Method for admin");
-
-        adminSetup();
-    }
-    @Before("@dean")// @Before("@TC01_Api") boyle yazarsak sadece bir test case calisir
-    public void beforeApiDean() {
-
-        System.out.println("Before Method for admin");
-
-        deanSetup();
-    }
-    @Before("@vicedean")// @Before("@TC01_Api") boyle yazarsak sadece bir test case calisir
-    public void beforeApiViceDean() {
-
-        System.out.println("Before Method for admin");
-
-        viceDeanSetup();
-    }
-    @Before("@teacher")// @Before("@TC01_Api") boyle yazarsak sadece bir test case calisir
-    public void beforeApiTeacher() {
-
-        System.out.println("Before Method for admin");
-
-        teacherSetup();
-    }
-    @Before("@student")
-    public void beforeApiStudent(){
-
-        System.out.println("Before method for student");
-        studentSetup();
+    public void setUp() {
+        System.out.println("Scenario'lar Çalismaya Başladı");
     }
 
-   /* @After
-    public void tearDown(Scenario scenario) throws Exception {
-        if (scenario.isFailed()) {
+
+    @After
+    public void tearDown(Scenario scenario) {
+        if (scenario.isFailed()){
             TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
-            scenario.attach(ts.getScreenshotAs(OutputType.BYTES), "image/jpeg", "scenario_" + scenario.getName());
+            scenario.attach(ts.getScreenshotAs(OutputType.BYTES),"image/png","scenario_"+scenario.getName());
             Driver.closeDriver();
         }
         Driver.closeDriver();
-
-    } */
+    }
 }

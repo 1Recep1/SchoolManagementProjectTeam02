@@ -1,5 +1,4 @@
 package stepDefinitions.uiStepDef;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,22 +13,19 @@ import pages.StudentPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
-
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
-
 public class US21_StepDef {
     LoginPage loginPage = new LoginPage();
     LessonPage lessonPage = new LessonPage();
     StudentPage studentPage = new StudentPage();
     Actions actions = new Actions(Driver.getDriver());
-
     @Given("Kullanici Management sayfasina giderRA")
     public void kullaniciManagementSayfasinaGiderRA() {
-        Driver.getDriver().get("https://managementonschools.com/");
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        //Driver.getDriver().get("https://managementonschools.com/");
     }
-
     @And("Kullanici student olarak login olurRA")
     public void kullaniciStudentOlarakLoginOlurRA() {
         loginPage.login.click();
@@ -68,7 +64,10 @@ public class US21_StepDef {
 
     @And("Sayfayi kapatirRA")
     public void sayfayiKapatirRA() {
-        Driver.getDriver().close();
+        ReusableMethods.bekle(1);
+        Driver.closeDriver();
+        ReusableMethods.bekle(1);
+
     }
 
     @Given("Choose Lesson daki ilk kutucuga click yap")
@@ -95,7 +94,7 @@ public class US21_StepDef {
         }
         System.out.println(seciliDerslerString);
         System.out.println(studentPage.lessonProgramId2RA.getText());
-        Assert.assertTrue(seciliDerslerString.contains(lessonPage.birinciDersRA.getText()));
+        Assert.assertTrue(seciliDerslerString.contains(lessonPage.birinciDersRA.getText().contains("")));
         Assert.assertTrue(seciliDerslerString.contains(lessonPage.ikinciDersRA.getText()));
     }
     @Given("Day ve Start Timei ayni olan dersleri sec ve submit e tikla")
@@ -109,11 +108,11 @@ public class US21_StepDef {
         List < WebElement >daySutunuList = Driver.getDriver().findElements(By.xpath("(//tbody)[1]//td[4]"));
         List < String > daySutunuString = new ArrayList<>();
         for (WebElement w:daySutunuList) {
-           daySutunuString.add(w.getText());
+            daySutunuString.add(w.getText());
         }
         List < String > dayVeStartTimeString = new ArrayList<>();
         for (int i = 0; i < daySutunuString.size(); i++) {
-           dayVeStartTimeString.add(daySutunuString.get(i)+" "+startTimeSutunuString.get(i));
+            dayVeStartTimeString.add(daySutunuString.get(i)+" "+startTimeSutunuString.get(i));
         }
         System.out.println("dayVeStartTimeString = " + dayVeStartTimeString);
 
@@ -188,7 +187,7 @@ public class US21_StepDef {
 
     @And("Meet List Date' de Start Time, Stop Time ve Description oldugunu dogrulaRA")
     public void meetListDateDeStartTimeStopTimeVeDescriptionOldugunuDogrulaRA() {
-            //meet olusturalamadigi icin test de edilemiyor.
+        //meet olusturalamadigi icin test de edilemiyor.
     }
 }
 

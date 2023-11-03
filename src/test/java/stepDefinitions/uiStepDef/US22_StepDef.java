@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pages.AdminPage;
 import pages.LessonPage;
@@ -17,7 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class US22_StepDef {
-    LoginPage loginPage = new LoginPage();
+    Actions actions = new Actions(Driver.getDriver());
+    LoginPage loginPage;
     LessonPage lessonPage = new LessonPage();
     AdminPage adminPage=new AdminPage();
     Faker faker=new Faker();
@@ -29,20 +31,28 @@ public class US22_StepDef {
     String dateofBirth2= format.format(dateofBirth1);
 
     String phone=faker.number().numberBetween(100,999)+"-"+
-                 faker.number().numberBetween(100,999)+"-"+
-                 faker.number().numberBetween(1000,9999);
+            faker.number().numberBetween(100,999)+"-"+
+            faker.number().numberBetween(1000,9999);
     String ssn=faker.number().numberBetween(100,999)+"-"+
-               faker.number().numberBetween(10,99)+"-"+
-               faker.number().numberBetween(1000,9999);
+            faker.number().numberBetween(10,99)+"-"+
+            faker.number().numberBetween(1000,9999);
+
+    String ssnTireli10rakalmli=faker.number().numberBetween(100,999)+"-"+
+            faker.number().numberBetween(10,99)+"-"+
+            faker.number().numberBetween(10000,99999);
 
     String ssn3v5=faker.number().numberBetween(100,999)+""+
             faker.number().numberBetween(10,99)+""+
             faker.number().numberBetween(1000,9999);
+    String ssn3v5cokRakamli=faker.number().numberBetween(100,999)+""+
+            faker.number().numberBetween(10,99)+""+
+            faker.number().numberBetween(100000,999999);
     String userName=faker.name().username();
-    String password=faker.internet().password(6,20,true,false,true)+ "1a";
-    String password7=faker.internet().password(5,20,true,false,true)+ "1a";
+    String password=faker.internet().password(6,20,true,false,true)+ "1Aa";
+    String  password7= String.valueOf(faker.number().numberBetween(1000000,9999999));
     @Then("Kullanici Admin olarak login olurRA")
     public void kullaniciAdminOlarakLoginOlurRA() {
+        loginPage = new LoginPage();
         loginPage.login.click();
         loginPage.username.sendKeys(ConfigReader.getProperty("adminUsername"), Keys.TAB,
                 ConfigReader.getProperty("adminPassword"));
@@ -81,7 +91,7 @@ public class US22_StepDef {
         Assert.assertTrue(adminPage.savedAdminRA.getText().
                 contains("Admin Saved"));
     }
-    
+
     @Given("Name bos birakilir, Surname, Birth Place, Cinsiyet, Phone Number, Date of Birth, SSN, User Name, Password girilirRA")
     public void nameBosBirakilirSurnameBirthPlaceCinsiyetPhoneNumberDateOfBirthSSNUserNamePasswordGirilirRA() {
         adminPage.surnamenameAdminRA.sendKeys(
@@ -155,24 +165,24 @@ public class US22_StepDef {
         adminPage.phoneAdminRA.sendKeys(phone,Keys.TAB,Keys.TAB,userName,Keys.TAB,password);
     }
     @Given("SSN 3. ve 5. rakamdan sonra '-' içermeden Name, Surname, Birth Place, Cinsiyet, Date of Birth, Phone Number, User Name, Password girilirRA")
-    public void ssnVeRakamdanSonraIçermedenNameSurnameBirthPlaceCinsiyetDateOfBirthPhoneNumberUserNamePasswordGirilirRA(int arg0, int arg1) {
+    public void ssnVeRakamdanSonraIçermedenNameSurnameBirthPlaceCinsiyetDateOfBirthPhoneNumberUserNamePasswordGirilirRA() {
         adminPage.nameAdminRA.sendKeys(
                 name,Keys.TAB,
                 surName,Keys.TAB,
                 birthPlace,Keys.TAB,Keys.TAB);
         adminPage.genderAdminRA.click();
         adminPage.genderAdminRA.sendKeys(Keys.TAB,dateofBirth2);
-        adminPage.phoneAdminRA.sendKeys(phone,Keys.TAB,ssn3v5,Keys.TAB,userName,Keys.TAB,password);
+        adminPage.phoneAdminRA.sendKeys(phone,Keys.TAB,ssn3v5cokRakamli,Keys.TAB,userName,Keys.TAB,password);
     }
     @Given("SSN 10 haneli girilerek Name, Surname, Birth Place, Cinsiyet, Date of Birth, Phone Number, User Name, Password girilirRA")
-    public void ssnHaneliGirilerekNameSurnameBirthPlaceCinsiyetDateOfBirthPhoneNumberUserNamePasswordGirilirRA(int arg0) {
+    public void ssnHaneliGirilerekNameSurnameBirthPlaceCinsiyetDateOfBirthPhoneNumberUserNamePasswordGirilirRA() {
         adminPage.nameAdminRA.sendKeys(
                 name,Keys.TAB,
                 surName,Keys.TAB,
                 birthPlace,Keys.TAB,Keys.TAB);
         adminPage.genderAdminRA.click();
         adminPage.genderAdminRA.sendKeys(Keys.TAB,dateofBirth2);
-        adminPage.phoneAdminRA.sendKeys(phone,Keys.TAB,ssn+1,Keys.TAB,userName,Keys.TAB,password);
+        adminPage.phoneAdminRA.sendKeys(phone,Keys.TAB,ssnTireli10rakalmli,Keys.TAB,userName,Keys.TAB,password);
     }
     @Given("User Name bos birakilir, Name, Birth Place, Cinsiyet, Phone Number, Date of Birth, SSN, Password girilirRA")
     public void userNameBosBirakilirNameBirthPlaceCinsiyetPhoneNumberDateOfBirthSSNPasswordGirilirRA() {
@@ -250,14 +260,13 @@ public class US22_StepDef {
     @And("SSN 9 rakamdan cok oldugu icin Admin olusmadigini dogrulaRA")
     public void ssnRakamdanCokOlduguIcinAdminOlusmadiginiDogrulaRA() {
         ReusableMethods.bekle(1);
-        Assert.assertTrue(adminPage.ssnAdminRA.getText().
-                contains("Required"));
+        Assert.assertTrue(adminPage.invalidTiresiz11liSSNAdminRA.getText().contains("Please enter valid SSN number"));
+
     }
     @And("SSN 3. ve 5. rakamdan sonra '-' içermedigi icin Admin olusmadigini dogrulaRA")
     public void ssnVeRakamdanSonraIçermedigiIcinAdminOlusmadiginiDogrulaRA() {
         ReusableMethods.bekle(1);
-        Assert.assertTrue(adminPage.ssnAdminRA.getText().
-                contains("Required"));
+        Assert.assertTrue(adminPage.invalidTiresiz11liSSNAdminRA.getText().contains("Please enter valid SSN number"));
     }
 
     @And("Username girilmedigi icin Admin olusmadigini dogrulaRA")
@@ -271,22 +280,28 @@ public class US22_StepDef {
     public void passwordGirilmedigiIcinAdminOlusmadiginiDogrulaRA() {
         ReusableMethods.bekle(1);
         Assert.assertTrue(adminPage.invalidPasswordAdminRA.getText().
-                contains("Required"));
+                contains("Enter your password"));
     }
 
     @And("Password 7 haneli girildigi icin Admin olusmadigini dogrulaRA")
     public void passwordHaneliGirildigiIcinAdminOlusmadiginiDogrulaRA() {
         ReusableMethods.bekle(1);
         Assert.assertTrue(adminPage.invalidPasswordAdminRA.getText().
-                contains("Required"));
+                contains("At least 8 characters"));
     }
 
     @And("Cinsiyet girilmedigi icin Admin olusmadigini dogrulaRA")
     public void cinsiyetGirilmedigiIcinAdminOlusmadiginiDogrulaRA() {
         ReusableMethods.bekle(1);
-        Assert.assertFalse(adminPage.savedAdminRA.getText().
-                contains("Admin Saved"));
-
+        ReusableMethods.jsScroll(adminPage.sonSayfaRA2);
+        ReusableMethods.bekle(2);
+       actions.sendKeys(Keys.PAGE_UP).perform();
+        ReusableMethods.bekle(3);
+        adminPage.sonSayfaRA.click();
+        ReusableMethods.bekle(2);
+        ReusableMethods.jsScroll(adminPage.sonSayfaAdminListRA2);
+        ReusableMethods.bekle(2);
+        Assert.assertFalse(adminPage.tableSonUsernameRA.getText().contains(userName));
     }
 
 

@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 public class LessonPage {
     public LessonPage(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -20,6 +22,49 @@ public class LessonPage {
 
 
     //irem 20-100
+    @FindBy(xpath = "//*[@id=\"controlled-tab-example-tab-lessonsList\"] ")
+    public WebElement lessonsI;
+    @FindBy(xpath = "//*[@id=\"lessonName\"]")
+    public WebElement lessonNameI;
+    @FindBy(xpath = "//*[@id=\"compulsory\"]")
+    public WebElement isCompulsoryI;
+    @FindBy(xpath="//*[@id=\"creditScore\"]")
+    public WebElement creditScoreI;
+    @FindBy(xpath = "//*[@id=\"controlled-tab-example-tabpane-lessonsList\"]/div[2]/div[1]/div/div/form/div/div[4]/div/button")
+    public WebElement submitButtonI;
+    @FindBy(xpath = "(//*[@class='page-link'])[10]")
+    public WebElement lastPageButtonI;
+    @FindBy(xpath = "//*[@id=\"2\"]/div[1]/div[2]")
+    public WebElement lessonCreatedAlertI;
+    @FindBy(xpath= "//*[@id=\"controlled-tab-example-tabpane-lessonsList\"]/div[2]/div[2]/div/table/tbody/tr[6]")
+    public WebElement lastLessonCreatedI;
+    @FindBy(xpath="//*[@class='btn btn-danger']")
+    public List<WebElement> lastCreatedLessonDeleteButtonsI;
+    @FindBy(xpath = "//*[@id=\"controlled-tab-example-tab-lessonProgram\"]")
+    public WebElement lessonProgramI;
+    @FindBy(xpath = "//*[text()='Select lesson']")
+    public WebElement chooseLessonDDMI;
+    @FindBy(xpath = "//*[@id=\"day\"]")
+    public WebElement chooseDayDDMI;
+    @FindBy(xpath = "//*[@id=\"educationTermId\"]")
+    public WebElement chooseSemesterDDMI;
+    @FindBy(xpath = "//*[@id=\"startTime\"]")
+    public WebElement startTimeI;
+    @FindBy(xpath = "//*[@id=\"controlled-tab-example-tabpane-lessonProgram\"]/div[2]/div[1]/div/form/div/div[2]/div[3]/div/button")
+    public WebElement addLessonProgramSubmitButtonI;
+    @FindBy(xpath = "//*[@id=\"controlled-tab-example-tabpane-lessonProgram\"]/div[2]/div[1]/div/form/div/div[2]/div[1]/div/div")
+    public WebElement addLessonProgramRequiredFieldsAlertI;
+
+    @FindBy(xpath = " //*[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']")
+    public WebElement lessonYokkenCikanAlertI;
+    @FindBy(xpath = "//*[@class='Toastify__toast-body']")
+    public WebElement createdLessonProgramI;
+
+    @FindBy(xpath = "//*[@role='alert']")
+    public WebElement alertMessageI;
+
+    @FindBy(xpath = "//*[@id=\"controlled-tab-example-tabpane-lessonsList\"]/div[2]/div[2]/div/table")
+    public List<WebElement> lessonlistI;
 
 
 
