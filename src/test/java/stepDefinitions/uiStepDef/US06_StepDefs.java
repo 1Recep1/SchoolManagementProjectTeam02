@@ -6,7 +6,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import pages.DeanPage;
 import pages.LoginPage;
 import utilities.ConfigReader;
@@ -55,12 +58,12 @@ public class US06_StepDefs {
     String ssn6 = faker.number().numberBetween(100000,999999)+""+
             faker.number().numberBetween(10000,99999);
     String username = faker.name().username();
-    String password1 = faker.internet().password(8, 12,true,false,true)+"rb";
-    String password2 = faker.internet().password(5, 7,true,false,true)+"rb";
-    String password3 = faker.internet().password(9, 12,true,false,true)+"rb";
-    String password4 = faker.internet().password(8, 12,true,false,true);
-    String password5 = faker.internet().password(8, 12,false,false,true)+"rb";
-    String password6 = faker.internet().password(8, 12,true,false,false)+"rb";
+    String password1 = faker.number().numberBetween(1000, 9999) + "RBrb";
+    String password2 = faker.number().numberBetween(100, 999) + "RBrb";
+    String password3 = faker.number().numberBetween(10000, 99999) + "RBrb";
+    String password4 = faker.number().numberBetween(1000, 9999) +"RBRB";
+    String password5 = faker.number().numberBetween(1000, 9999) +"rbrb";
+    String password6 = faker.internet().password(4,8, true, false, false)+ "rbrb";
 
     @Given("Kullanici web sitesine giderRB")
     public void kullaniciWebSitesineGiderRB() {
@@ -177,11 +180,12 @@ public class US06_StepDefs {
     public void pleaseEnterValidPhoneNumberMesajininGorundugunuDogrularRB() {
         ReusableMethods.bekle(1);
         Assert.assertTrue(deanPage.enterValidPhoneNumberRB.isDisplayed());
+        ReusableMethods.bekle(1);
     }
 
     @And("Phone alanini temizlerRB")
     public void phoneAlaniniTemizlerRB() {
-        deanPage.viceDeanPhoneRB.clear();
+        ReusableMethods.clear("arguments[0].value = '';", deanPage.viceDeanPhoneRB);
         ReusableMethods.bekle(3);
     }
 
@@ -216,12 +220,13 @@ public class US06_StepDefs {
     @And("Please enter valid SSN number mesajinin gorundugunu dogrularRB")
     public void pleaseEnterValidSSNNumberMesajininGorundugunuDogrularRB() {
         Assert.assertTrue(deanPage.enterValidSsnNumberRB.isDisplayed());
+        ReusableMethods.bekle(2);
     }
 
     @And("Ssn alanini temizlerRB")
     public void ssnAlaniniTemizlerRB() {
+        ReusableMethods.clear("arguments[0].value = '';", deanPage.viceDeanSsnRB);
         ReusableMethods.bekle(2);
-        deanPage.viceDeanSsnRB.clear();
     }
 
     @And("Ssn alaninda besinci rakamdan sonra farkli bir isaret girerRB")
@@ -249,12 +254,12 @@ public class US06_StepDefs {
         deanPage.viceDeanSsnRB.sendKeys(ssn6);
     }
 
-    @Given("Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender {string} Date Of Birth, Phone, ve Username alanlarini doldururRB")
-    public void kullaniciViceDeanManagementSayfasindaNameSurnameBirthPlaceGenderFemaleDateOfBirthPhoneVeUsernameAlanlariniDoldururRB(String expectedGenderRB) {
-        deanPage.viceDeanNameRB.sendKeys(name, Keys.TAB, surname, Keys.TAB, birthPlace);
-        deanPage.chooseGenderRB(expectedGenderRB);
-        deanPage.viceDeanBirthDayRB.sendKeys(dateOfBirth2, Keys.TAB, phone1, Keys.TAB, ssn1, Keys.TAB, username);
-    }
+   @Given("Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender {string} Date Of Birth, Phone, Ssn ve Username alanlarini doldururRB")
+   public void kullaniciViceDeanManagementSayfasindaNameSurnameBirthPlaceGenderMaleDateOfBirthPhoneSsnVeUsernameAlanlariniDoldururRB(String expectedGenderRB) {
+       deanPage.viceDeanNameRB.sendKeys(name, Keys.TAB, surname, Keys.TAB, birthPlace);
+       deanPage.chooseGenderRB(expectedGenderRB);
+       deanPage.viceDeanBirthDayRB.sendKeys(dateOfBirth2, Keys.TAB, phone1, Keys.TAB, ssn1, Keys.TAB, username);
+   }
 
     @When("Password alanina yedi haneli bir sifre girerRB")
     public void passwordAlaninaYediHaneliBirSifreGirerRB() {
@@ -264,12 +269,13 @@ public class US06_StepDefs {
     @And("At least sekiz characters mesajinin gorundugunu dogrularRB")
     public void atLeastSekizCharactersMesajininGorundugunuDogrularRB() {
         Assert.assertTrue(deanPage.atLeast8characterRB.isDisplayed());
+        ReusableMethods.bekle(2);
     }
 
     @And("Password alanini temizlerRB")
     public void passwordAlaniniTemizlerRB() {
+        ReusableMethods.clear("arguments[0].value = '';", deanPage.viceDeanPasswordRB);
         ReusableMethods.bekle(2);
-        deanPage.viceDeanPasswordRB.clear();
     }
 
     @And("Password alanina dokuz haneli bir sifre girerRB")
@@ -279,6 +285,7 @@ public class US06_StepDefs {
 
     @When("Password alanina buyuk harf ve rakamlardan olusan bir sifre girer")
     public void passwordAlaninaBuyukHarfVeRakamlardanOlusanBirSifreGirer() {
+        ReusableMethods.bekle(2);
         deanPage.viceDeanPasswordRB.sendKeys(password4);
     }
 
@@ -289,6 +296,7 @@ public class US06_StepDefs {
 
     @And("Password alanina kucuk harf ve rakamlardan olusan bir sifre girer")
     public void passwordAlaninaKucukHarfVeRakamlardanOlusanBirSifreGirer() {
+        ReusableMethods.bekle(2);
         deanPage.viceDeanPasswordRB.sendKeys(password5);
     }
 
@@ -299,6 +307,7 @@ public class US06_StepDefs {
 
     @And("Password alanina buyuk harf ve kucuk harflerden olusan bir sifre girer")
     public void passwordAlaninaBuyukHarfVeKucukHarflerdenOlusanBirSifreGirer() {
+        ReusableMethods.bekle(2);
         deanPage.viceDeanPasswordRB.sendKeys(password6);
     }
 
@@ -306,4 +315,6 @@ public class US06_StepDefs {
     public void oneNumberMesajininGorundugunuDogrular() {
         Assert.assertTrue(deanPage.oneNumberRB.isDisplayed());
     }
+
+
 }

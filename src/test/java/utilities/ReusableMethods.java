@@ -337,6 +337,11 @@ public class ReusableMethods {
         actions.sendKeys(Keys.ARROW_DOWN).perform();
     }
 
+    public static void clear(String str, Object ebelementLocate){
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+        jsExecutor.executeScript(str, ebelementLocate);
+    }
+
 
 
 }

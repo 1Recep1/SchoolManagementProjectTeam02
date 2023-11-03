@@ -4,7 +4,7 @@ Feature: US06 Dean, Vice Dean hesabi olusturabilmeli
     Given Kullanici web sitesine giderRB
     When Kullanici kayitli bir Dean hesabi ile giris yaparRB
 
-    @TC01
+    @US06-TC01
   Scenario: TC01 Dean Web Sitesinde Vice Dean olusturabilmeliRB
     Given Kullanici Vice Dean Management sayfasinda Name alanina bir isim girerRB
     When Surname alanina bir soyisim girerRB
@@ -19,14 +19,14 @@ Feature: US06 Dean, Vice Dean hesabi olusturabilmeli
     And Vice dean saved mesajinin gorundugunu dogrularRB
     Then Sayfayi kapatirRB
 
-  @TC02
+  @US06-TC02
   Scenario: TC02 Zorunlu alanlar bos birakildiginda kayit islemi gerceklesmemeliRB
     Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender, Date Of Birth, Phone, Ssn, Username ve Password alanlarini bos birakirRB
     When Submit butonuna tiklarRB
     And Kaydin gerceklesmedigini dogrularRB
     And Sayfayi kapatirRB
 
-  @TC03
+  @US06-TC03
   Scenario: TC03 Phone formatina uygun bir sekilde yazilmadiginda gerceklesmemeliRB
     Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Male' Date Of Birth, Ssn, Username ve Password alanlarini doldururRB
     When Phone alaninda tire isareti yerine baska bir isaret kullanirRB
@@ -41,7 +41,7 @@ Feature: US06 Dean, Vice Dean hesabi olusturabilmeli
     And  Please enter valid phone number mesajinin gorundugunu dogrularRB
     And Sayfayi kapatirRB
 
-  @TC04
+  @US06-TC04
   Scenario: TC04 Ssn, formatina uygun bir sekilde yazilmadiginda kayit islemi gerceklesmemeliRB
     Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Female' Date Of Birth, Phone, Username ve Password alanlarini doldururRB
     When Ssn alaninda ucuncu rakamdan sonra farkli bir isaret girerRB
@@ -64,9 +64,9 @@ Feature: US06 Dean, Vice Dean hesabi olusturabilmeli
     And Please enter valid SSN number mesajinin gorundugunu dogrularRB
     And Sayfayi kapatirRB
 
-  @TC05
+  @US06-TC05
   Scenario: TC05 Password, en az 8 karakterden olusmaliRB
-    Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Male' Date Of Birth, Phone, ve Username alanlarini doldururRB
+    Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Male' Date Of Birth, Phone, Ssn ve Username alanlarini doldururRB
     When Password alanina yedi haneli bir sifre girerRB
     And Submit butonuna tiklarRB
     And At least sekiz characters mesajinin gorundugunu dogrularRB
@@ -76,9 +76,9 @@ Feature: US06 Dean, Vice Dean hesabi olusturabilmeli
     And Vice dean saved mesajinin gorundugunu dogrularRB
     And Sayfayi kapatirRB
 
-  @TC06
+  @US06-TC06
   Scenario: TC06 Password, buyuk harf, kucuk harf ve rakam icermelidir.
-    Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Female' Date Of Birth, Phone, ve Username alanlarini doldururRB
+    Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Female' Date Of Birth, Phone, Ssn ve Username alanlarini doldururRB
     When Password alanina buyuk harf ve rakamlardan olusan bir sifre girer
     And One lowercse character mesajinin gorundugunu dogrular
     And Password alanini temizlerRB
@@ -87,6 +87,7 @@ Feature: US06 Dean, Vice Dean hesabi olusturabilmeli
     And Password alanini temizlerRB
     And Password alanina buyuk harf ve kucuk harflerden olusan bir sifre girer
     And One number mesajinin gorundugunu dogrular
+    And Sayfayi kapatirRB
 
 
 

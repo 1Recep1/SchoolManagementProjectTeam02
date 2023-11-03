@@ -17,10 +17,6 @@ public class DeanPage {
 
 
 
-
-
-
-
     //Recep 20-80
 @FindBy(xpath = "//input[@id='name']") public WebElement viceDeanNameRB;
 @FindBy(xpath = "//input[@id='surname']") public WebElement viceDeanSurnameRB;
@@ -41,7 +37,7 @@ public class DeanPage {
 @FindBy(xpath = "//*[@id='phoneNumber']//following-sibling::div[text()='Required']") public WebElement phoneRequiredRB;
 @FindBy(xpath = "//*[@id='ssn']//following-sibling::div[text()='Required']") public WebElement ssnRequiredRB;
 @FindBy(xpath = "//*[@id='username']//following-sibling::div[text()='Required']") public WebElement usernameRequiredRB;
-@FindBy(xpath = "//*[@id='name']//following-sibling::div[text()='Required']") public WebElement enterYourPasswordRB;
+@FindBy(xpath = "//*[@id='password']//following-sibling::div[text()='Enter your password']") public WebElement enterYourPasswordRB;
 @FindBy(xpath = "(//div[text()='Please enter valid phone number'])[1]") public WebElement enterValidPhoneNumberRB;
 @FindBy(xpath = "//*[text()='Minimum 12 character (XXX-XXX-XXXX)']") public WebElement minimum12characterRB;
 @FindBy(xpath = "(//div[text()='Please enter valid SSN number'])[1]") public WebElement enterValidSsnNumberRB;
