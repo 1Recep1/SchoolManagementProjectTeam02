@@ -14,6 +14,7 @@ public class ContactGetAllPage {
 
 
     //Ercan
+
     @FindBy(xpath = "//*[text()='Contact']")
     public WebElement contactButton;
     @FindBy(xpath = "//*[@id='name']")

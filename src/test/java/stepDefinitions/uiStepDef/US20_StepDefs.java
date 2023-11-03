@@ -9,8 +9,8 @@ public class US20_StepDefs {
     public void teacher_username_girer() {
 
     }
-    @Given("Teacher password girer")
-    public void teacher_password_girer() {
+   @Given("Teacher password girer")
+  public void teacher_password_girer() {
 
     }
 
