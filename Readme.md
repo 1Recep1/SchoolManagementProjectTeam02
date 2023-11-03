@@ -44,6 +44,6 @@ Oluşturulan methodlarla daha dinamik çalışılması sağlanmıştır..
 
 <img src="src/pngs/java.png" width="100px" height="100px" padding="10px" align="left"/>
 <img src="src/pngs/selenium.png" width="100px" height="100px" padding="10px" align="left"/>
-<img src="src/pngs/cucumber.png" width="180px" height="100px" padding="10px" align="left"/>
-<img src="src/pngs/jira.png" width="210px" height="100px" padding="10px" align="left"/>
-<img src="src/pngs/git.png" width="210px" height="100px" padding="10px" align="left"/>
+<img src="src/pngs/cucumber.png" width="160px" height="100px" padding="10px" align="left"/>
+<img src="src/pngs/jira.png" width="200px" height="100px" padding="10px" align="left"/>
+<img src="src/pngs/git.png" width="200px" height="100px" padding="10px" align="left"/>
