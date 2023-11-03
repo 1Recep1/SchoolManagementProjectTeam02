@@ -65,8 +65,8 @@ viceDeanPage.menuButonuViceDean.click();
 
     }
 
-   @And("Teacher username girer")
-   public void teacherUsernameGirer() {
+  //@And("Teacher username girer")
+  //public void teacherUsernameGirer() {
 
-    }
+  // }
 }
