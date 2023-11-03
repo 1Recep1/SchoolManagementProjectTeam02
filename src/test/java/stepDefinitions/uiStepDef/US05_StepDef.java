@@ -14,6 +14,7 @@ import utilities.ReusableMethods;
 
 public class US05_StepDef {
     LoginPage loginPage = new LoginPage();
+
     MustafasPage adminPage = new MustafasPage();
       Actions actions = new Actions(Driver.getDriver());
     @Given("MKullanici {string} sayfasina gider.")
@@ -47,6 +48,7 @@ public class US05_StepDef {
     public void mkullaniciMenuButonunaTiklar() {
         loginPage.menuButton.click();
     }
+
     @And("MAdmin Main Menuden Dean Management'i secer")
     public void madminMainMenudenDeanManagementISecer() {
         adminPage.deanManagementMenu.click();

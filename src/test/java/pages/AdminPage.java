@@ -17,11 +17,10 @@ public class AdminPage {
 
 
 
-
-
     //Recep 20-50
-
-
+    @FindBy(xpath = "//button[text()='Menu']") public WebElement menuButtonRB;
+    @FindBy(xpath = "//a[text()='Vice Dean Management']") public WebElement viceDeanManagementPageRB;
+    @FindBy(xpath = "(//div[@class='Toastify__toast-body']/div[.='Vice dean Saved']//parent::div[@role='alert'])[1]") public WebElement viceDeanSavedRB;
 
 
 
