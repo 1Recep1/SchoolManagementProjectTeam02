@@ -22,7 +22,6 @@ Feature: Vice Dean ders listesini gorebilmeli ve guncellemeler yapabilmelidir.
     And Verify if the displayed information matches the "<lessonName>" created lesson details
   @US09
   Scenario: Delete a specific lesson and verify deletion
-
     When Vice Dean navigates to the last page
     And Vice Dean clicks the trash bin icon for the lesson to be deleted
     Then Vice Dean verifies that the lesson "<lessonName>" has been deleted successfully

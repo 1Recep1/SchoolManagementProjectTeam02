@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +17,8 @@ import utilities.Driver;
 import utilities.ReusableMethods;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class US09_StepDef {
     LoginPage loginPage = new LoginPage();
@@ -80,18 +83,25 @@ public class US09_StepDef {
     @And("Vice Dean navigates to the last page")
     public void viceDeanNavigatesToTheLastPage() {
         ReusableMethods.bekle(3);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-       // ReusableMethods.jsScroll(lessonPage.lastPageButtonI);
+        //actions.sendKeys(Keys.PAGE_DOWN,Keys.PAGE_DOWN,Keys.PAGE_DOWN,Keys.PAGE_DOWN).perform();
+        ReusableMethods.jsScroll(lessonPage.lastPageButtonI);
         ReusableMethods.bekle(2);
        // ReusableMethods.jsExecutorClick(lessonPage.lastPageButtonI);
       ReusableMethods.clickWithJS(lessonPage.lastPageButtonI);
-        ReusableMethods.bekle(2);
+        ReusableMethods.bekle(3);
+        ReusableMethods.jsScroll(lessonPage.lastPageButtonI);
 
     }
 
     @Then("The information of the created lesson {string} is displayed")
     public void theInformationOfTheCreatedLessonIsDisplayed(String lesson) throws IOException {
         //ReusableMethods.waitForVisibility(lessonPage.lessonCreatedAlertI,5);
+        List<WebElement> lessonList = Driver.getDriver().findElements(By.xpath("//*[@id=\"controlled-tab-example-tabpane-lessonsList\"]/div[2]/div[2]/div/table/tbody"));
+        List < String > lessonListString = new ArrayList<>();
+        for (WebElement w:lessonList) {
+            lessonListString.add(w.getText());
+        }
+        softAssert.assertTrue(lessonListString.contains(lesson));
         ReusableMethods.getScreenshot("Lesson created");
 
     }
@@ -113,7 +123,7 @@ public class US09_StepDef {
 
     @When("Vice Dean scrolls down to reach the page numbers")
     public void viceDeanScrollsDownToReachThePageNumbers() {
-        actions.sendKeys(Keys.PAGE_DOWN,Keys.PAGE_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN,Keys.PAGE_DOWN,Keys.PAGE_DOWN).perform();
     }
 
     @And("Vice Dean clicks the last page button")
@@ -126,10 +136,13 @@ public class US09_StepDef {
     }
 
     @And("Vice Dean clicks the trash bin icon for the lesson to be deleted")
-    public void viceDeanClicksTheTrashBinIconForTheLessonToBeDeleted() {
-        int size = lessonPage.lastCreatedLessonDeleteButtonsI.size();
-        WebElement deleteButton = lessonPage.lastCreatedLessonDeleteButtonsI.get(size-1);
-        deleteButton.click();
+    public void viceDeanClicksTheTrashBinIconForTheLessonToBeDeleted() throws IOException {
+
+        List<WebElement> deleteButtonList = Driver.getDriver().findElements(By.xpath("//*[@class='btn btn-danger']"));
+        int size = deleteButtonList.size();
+        WebElement deleteButton = deleteButtonList.get(size-1);
+       deleteButton.click();
+
     }
 
     @Then("Vice Dean verifies that the lesson {string} has been deleted successfully")
