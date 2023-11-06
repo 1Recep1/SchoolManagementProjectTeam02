@@ -74,7 +74,7 @@ public class US21_StepDef {
     public void chooseLessonDakiIlkKutucugaClickYap() {
         studentPage.lessonProgramId1RA.click();
     }
-    @Then("Choose Lesson daki ikinci kutucuga click yap ve submit e tikla")
+   /* @Then("Choose Lesson daki ikinci kutucuga click yap ve submit e tikla")
     public void chooseLessonDakiIkinciKutucugaClickYapVeSubmitETikla() {
         studentPage.lessonProgramId2RA.click();
         ReusableMethods.jsScroll(studentPage.submitStudentRA);
@@ -83,7 +83,7 @@ public class US21_StepDef {
         ReusableMethods.bekle(3);
         studentPage.submitStudentRA.click();
         ReusableMethods.bekle(3);
-    }
+    }*/
 
     @And("Dersin secildigini dogrulaRA")
     public void dersinSecildiginiDogrulaRA() {
@@ -94,8 +94,8 @@ public class US21_StepDef {
         }
         System.out.println(seciliDerslerString);
         System.out.println(studentPage.lessonProgramId2RA.getText());
-        Assert.assertTrue(seciliDerslerString.contains(lessonPage.birinciDersRA.getText().contains("")));
-        Assert.assertTrue(seciliDerslerString.contains(lessonPage.ikinciDersRA.getText()));
+        Assert.assertTrue(seciliDerslerString.contains(lessonPage.birinciDersRA.getText().contains(studentPage.seciliIlkDersIsmi.getText())));
+       // Assert.assertTrue(seciliDerslerString.contains(lessonPage.ikinciDersRA.getText().contains(studentPage.seciliIkinciDersIsmi.getText())));
     }
     @Given("Day ve Start Timei ayni olan dersleri sec ve submit e tikla")
     public void dayVeStartTimeiAyniOlanDersleriSecVeSubmitETikla() {

@@ -8,6 +8,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utilities.Driver;
 
+import java.time.Duration;
+
 
 public class Hooks {
 
@@ -22,12 +24,11 @@ parametre olarak scenario'ya verdiğimiz tag'ı yazarız. Dolayısıyla sadece t
 scenariodan önce devreye girer.
  */
 
-    @Before
-    public void setUp() {
-        System.out.println("Scenario'lar Çalismaya Başladı");
+    @Before("@UI")
+    public void before_ui(){
+        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        Driver.getDriver().manage().window().maximize();
     }
-
-
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()){
@@ -37,4 +38,5 @@ scenariodan önce devreye girer.
         }
         Driver.closeDriver();
     }
+
 }
