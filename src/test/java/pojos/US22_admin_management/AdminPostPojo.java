@@ -1,11 +1,10 @@
-package pojos.US22Pojo;
+package pojos.US22_admin_management;
 
 import java.io.Serializable;
 
-public class US22PostPojo implements Serializable {
+public class AdminPostPojo implements Serializable {
 	private String birthDay;
 	private String birthPlace;
-	private String builtIn;
 	private String gender;
 	private String name;
 	private String password;
@@ -14,13 +13,12 @@ public class US22PostPojo implements Serializable {
 	private String surname;
 	private String username;
 
-	public US22PostPojo() {
+	public AdminPostPojo() {
 	}
 
-	public US22PostPojo(String birthDay, String birthPlace, String builtIn, String gender, String name, String password, String phoneNumber, String ssn, String surname, String username) {
+	public AdminPostPojo(String birthDay, String birthPlace, String gender, String name, String password, String phoneNumber, String ssn, String surname, String username) {
 		this.birthDay = birthDay;
 		this.birthPlace = birthPlace;
-		this.builtIn = builtIn;
 		this.gender = gender;
 		this.name = name;
 		this.password = password;
@@ -44,14 +42,6 @@ public class US22PostPojo implements Serializable {
 
 	public String getBirthPlace(){
 		return birthPlace;
-	}
-
-	public void setBuiltIn(String builtIn){
-		this.builtIn = builtIn;
-	}
-
-	public String getBuiltIn(){
-		return builtIn;
 	}
 
 	public void setGender(String gender){
@@ -113,10 +103,9 @@ public class US22PostPojo implements Serializable {
 	@Override
  	public String toString(){
 		return 
-			"US22PostPojo{" + 
+			"AdminPostPojo{" + 
 			"birthDay = '" + birthDay + '\'' + 
 			",birthPlace = '" + birthPlace + '\'' + 
-			",built_in = '" + builtIn + '\'' + 
 			",gender = '" + gender + '\'' + 
 			",name = '" + name + '\'' + 
 			",password = '" + password + '\'' + 
