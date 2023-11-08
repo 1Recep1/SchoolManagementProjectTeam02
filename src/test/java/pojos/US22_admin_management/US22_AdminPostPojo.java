@@ -2,7 +2,7 @@ package pojos.US22_admin_management;
 
 import java.io.Serializable;
 
-public class AdminPostPojo implements Serializable {
+public class US22_AdminPostPojo implements Serializable {
 	private String birthDay;
 	private String birthPlace;
 	private String gender;
@@ -13,10 +13,10 @@ public class AdminPostPojo implements Serializable {
 	private String surname;
 	private String username;
 
-	public AdminPostPojo() {
+	public US22_AdminPostPojo() {
 	}
 
-	public AdminPostPojo(String birthDay, String birthPlace, String gender, String name, String password, String phoneNumber, String ssn, String surname, String username) {
+	public US22_AdminPostPojo(String birthDay, String birthPlace, String gender, String name, String password, String phoneNumber, String ssn, String surname, String username) {
 		this.birthDay = birthDay;
 		this.birthPlace = birthPlace;
 		this.gender = gender;
