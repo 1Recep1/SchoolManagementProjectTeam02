@@ -13,25 +13,25 @@ public class ManagementSchoolUrl extends Authentication {
 
     public static void adminSetup() {
 
-        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("adminPassword"), ConfigReader.getProperty("adminUsername"))).
+        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("adminUsername"), ConfigReader.getProperty("adminPassword"))).
                 setBaseUri("https://managementonschools.com/app").build();
     } //setContentType() kismi post isleminin duzgun calismasi icin
 
     public static void deanSetup() {
 
-        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("deanPassword"), ConfigReader.getProperty("deanUsername"))).
+        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("deanUsername"), ConfigReader.getProperty("deanPassword"))).
                 setBaseUri("https://managementonschools.com/app").build();
     }
 
     public static void viceDeanSetup() {
 
-        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("viceDeanPassword"), ConfigReader.getProperty("viceDeanUsername"))).
+        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("viceDeanUsername"), ConfigReader.getProperty("viceDeanPassword"))).
                 setBaseUri("https://managementonschools.com/app").build();
     }
 
     public static void teacherSetup() {
 
-        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("teacherPassword"), ConfigReader.getProperty("teacherUsername"))).
+        spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("teacherUsername"), ConfigReader.getProperty("teacherPassword"))).
                 setBaseUri("https://managementonschools.com/app").build();
     }
 
