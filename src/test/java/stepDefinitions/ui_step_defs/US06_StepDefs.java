@@ -1,4 +1,4 @@
-package stepDefinitions.uiStepDef;
+package stepDefinitions.ui_step_defs;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
@@ -6,10 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import pages.DeanPage;
 import pages.LoginPage;
 import utilities.ConfigReader;
