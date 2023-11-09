@@ -4,21 +4,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import pojos.US06Pojo.US06ObjectPojo;
 import pojos.US06Pojo.US06PostPojo;
 import pojos.US06Pojo.US06ResponsePojo;
-import pojos.dean_management.ObjectPojo;
-import pojos.dean_management.ResponsePojo;
 import utilities.ConfigReader;
 
 import java.util.List;
 
-import static baseUrl.BaseUrl.setup;
+import static baseUrl.ManagementSchoolUrl.setup;
 import static baseUrl.ManagementSchoolUrl.spec;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
@@ -97,7 +92,7 @@ public class US06_API_StepDefs {
         response = given(spec).when().get("{first}/{second}");
 
         JsonPath json = response.jsonPath();
-        List<Integer> userIdList = json.getList("findAll{it.username=='Ibrahim47'}.userId");
+        List<Integer> userIdList = json.getList("findAll{it.username=='Mardinli47'}.userId");
         userId = userIdList.get(0);
     }
 
@@ -109,7 +104,7 @@ public class US06_API_StepDefs {
 
     @And("Vice Dean GetViceDeanById icin beklenen veriler duzenlenir")
     public void viceDeanGetViceDeanByIdIcinBeklenenVerilerDuzenlenir() {
-        object = new US06ObjectPojo(userId, "Ibrahim47", "Ibrahim", "Mardinli", "1973-03-05", "312-52-3652", "Mardin", "312-562-9856", "MALE");
+        object = new US06ObjectPojo(userId, "Mardinli47", "Ibrahim", "Mardinli", "1973-05-03", "312-52-3623", "Mardin", "312-562-9845", "MALE");
         expectedData = new US06ResponsePojo(object, "Vice dean successfully found", "OK");
     }
 
@@ -134,4 +129,18 @@ public class US06_API_StepDefs {
         assertEquals(expectedData.getHttpStatus(), actualData.getHttpStatus());
     }
 
+    @And("Vice Dean Delete icin URL duzenlenirRB")
+    public void viceDeanDeleteIcinURLDuzenlenirRB() {
+        spec.pathParams("first", "vicedean", "second", "delete", "third", userId);
+    }
+
+    @When("Vice Dean Delete icin DELETE Request gonderilir ve Response alinirRB")
+    public void viceDeanDeleteIcinDELETERequestGonderilirVeResponseAlinirRB() {
+        response = given(spec).when().delete("{first}/{second}/{third}");
+    }
+
+    @Then("Status kodun {int} oldugu dogrulanirRB")
+    public void statusKodunOlduguDogrulanirRB(int statuscode) {
+        assertEquals(statuscode, response.statusCode());
+    }
 }
