@@ -40,5 +40,13 @@ public class ManagementSchoolUrl extends Authentication {
         spec = new RequestSpecBuilder().setContentType(ContentType.JSON).addHeader("Authorization", generateToken(ConfigReader.getProperty("studentPassword"), ConfigReader.getProperty("studentUsername"))).
                 setBaseUri("https://managementonschools.com/app").build();
     }
+
+    public static void setup(String username, String password){
+        spec = new RequestSpecBuilder()
+                .setBaseUri("https://managementonschools.com/app")
+                .addHeader("Authorization", generateToken(username, password))
+                .setContentType(ContentType.JSON)
+                .build();
+    }
 }
 
