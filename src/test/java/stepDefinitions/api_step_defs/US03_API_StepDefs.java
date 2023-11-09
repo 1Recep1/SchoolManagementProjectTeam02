@@ -1,29 +1,20 @@
 package stepDefinitions.api_step_defs;
 
-import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.junit.Assert;
-import pojos.US03Pojo.US03ObjectPojo;
 import pojos.US03Pojo.US03PostPojo;
 import pojos.US03Pojo.US03ResponsePojo;
-import pojos.admin_management.AdminPostPojo;
-import pojos.dean_management.ResponsePojo;
 import utilities.ObjectMapperUtils;
 
 import static baseUrl.ManagementSchoolUrl.*;
 import static io.restassured.RestAssured.given;
 
-public class US03_API {
-    US03ObjectPojo us03ObjectPojo;
+public class US03_API_StepDefs {
+
     US03PostPojo expectedData;
-    US03ResponsePojo us03ResponsePojo;
-
     Response response;
-    Faker faker;
-
-    ResponsePojo actualData;
 
     @Given("User sends the post request")
     public void user_sends_the_post_request() {

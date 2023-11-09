@@ -30,6 +30,8 @@ public class US04PostPojo {
         this.username = username;
     }
 
+
+
     public String getBirthDay() {
         return birthDay;
     }
@@ -116,5 +118,7 @@ public class US04PostPojo {
                 ", username='" + username + '\'' +
                 '}';
     }
+
+
 }
 
