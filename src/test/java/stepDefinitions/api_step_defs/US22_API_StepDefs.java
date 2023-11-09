@@ -4,16 +4,20 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import pojos.US22_admin_management.US22_AdminPostPojo;
 import pojos.US22_admin_management.US22_ResponsePojo;
 
+import java.util.List;
+
 import static baseUrl.ManagementSchoolUrl.adminSetup;
 import static baseUrl.ManagementSchoolUrl.spec;
 import static io.restassured.RestAssured.given;
+import static stepDefinitions.api_step_defs.US06_API_StepDefs.userId;
 
-public class US22_API {
+public class US22_API_StepDefs {
 
     /*
      public static void adminSetup() {
@@ -31,6 +35,7 @@ public class US22_API {
     Response response;
     US22_ResponsePojo actualData;
     US22_AdminPostPojo payload;
+    int userId;
 
 
     @Given("Admin Save icin URL duzenlenirRA")
@@ -41,7 +46,15 @@ public class US22_API {
 
     @And("Admin Save icin payload duzenlenirRA")
     public void adminSaveIcinPayloadDuzenlenirRA() {
-        payload = new US22_AdminPostPojo("1907-11-11", "Ankara", "MALE", "Ramazan", "Ramazan1.", "922-182-3322", "156-73-0949", "Batch172", "RamazanB2");
+        payload = new US22_AdminPostPojo("1907-11-11",
+                "Oslo",
+                "MALE",
+                "Ramazan",
+                "Ramazan1.",
+                "922-182-3322",
+                "156-73-0949",
+                "Batch172",
+                "RamazanB2");
     }
 
     @When("Admin Save icn POST Request gonderilir ve Response alinirRA")
@@ -71,16 +84,19 @@ public class US22_API {
     @Given("Kayitli Admin hesap bilgisinin ID nosu alinirRA")
     public void kayitliAdminHesapBilgisininIDNosuAlinirRA() {
         adminSetup();
-        spec.pathParams("first", "admin", "second", "getAll");
+        spec.pathParams("first", "admin", "second", "getAll").queryParam("size", "1000");
         response = given(spec).when().get("{first}/{second}");
         response.prettyPrint();
+        JsonPath json= response.jsonPath();
+        List<Integer> userIdList =json.getList("findAll{it.username=='RamazanB2'}.userId");
+        userId=userIdList.get(0);
+        System.out.println("RamazanB2'nin user IDsi  = " + userId);
     }
 
     @Given("Admin Delete icin URL duzenlenirRA")
-   /* public void adminDeleteIcinURLDuzenlenirRA() {
+    public void adminDeleteIcinURLDuzenlenirRA() {
         spec.pathParams("first", "admin", "second", "delete", "third", userId);
     }
-    */
 
 
     @When("Admin Delete icin Delete Request gonderilir ve Response alinirRA")
