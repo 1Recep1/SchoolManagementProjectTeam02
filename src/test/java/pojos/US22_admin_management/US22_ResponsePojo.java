@@ -1,26 +1,17 @@
-package pojos.dean_management;
+package pojos.US22_admin_management;
 
 import java.io.Serializable;
 
-public class ResponsePojo implements Serializable {
-	private ObjectPojo object;
+public class US22_ResponsePojo implements Serializable {
+	private US22_ObjectPojo object;
 	private String message;
 	private String httpStatus;
 
-	public ResponsePojo() {
-	}
-
-	public ResponsePojo(ObjectPojo object, String message, String httpStatus) {
-		this.object = object;
-		this.message = message;
-		this.httpStatus = httpStatus;
-	}
-
-	public void setObject(ObjectPojo object){
+	public void setObject(US22_ObjectPojo object){
 		this.object = object;
 	}
 
-	public ObjectPojo getObject(){
+	public US22_ObjectPojo getObject(){
 		return object;
 	}
 
@@ -38,6 +29,15 @@ public class ResponsePojo implements Serializable {
 
 	public String getHttpStatus(){
 		return httpStatus;
+	}
+
+	public US22_ResponsePojo() {
+	}
+
+	public US22_ResponsePojo(US22_ObjectPojo object, String message, String httpStatus) {
+		this.object = object;
+		this.message = message;
+		this.httpStatus = httpStatus;
 	}
 
 	@Override
