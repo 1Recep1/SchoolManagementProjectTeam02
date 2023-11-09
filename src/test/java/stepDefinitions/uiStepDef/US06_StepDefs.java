@@ -1,4 +1,4 @@
-package stepDefinitions.ui_step_defs;
+package stepDefinitions.uiStepDef;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
@@ -77,19 +77,35 @@ public class US06_StepDefs {
         ReusableMethods.bekle(2);
     }
 
-    @Given("Kullanici Vice Dean Management sayfasinda Name alanina bir isim girerRB")
-    public void kullaniciViceDeanManagementSayfasindaNameAlaninaBirIsimGirerRB() {
-        deanPage.viceDeanNameRB.sendKeys(name);
+    @And("Kullanici Vice Dean Management sayfasinda Name alanina {string} girerRB")
+    public void kullaniciViceDeanManagementSayfasindaNameAlaninaGirerRB(String str) {
+        String name = faker.name().firstName();
+        if (str.equals("bir isim")){
+            deanPage.viceDeanNameRB.sendKeys(name);
+        } else {
+            deanPage.viceDeanNameRB.sendKeys(str);
+        }
     }
 
-    @When("Surname alanina bir soyisim girerRB")
-    public void surnameAlaninaBirSoyisimGirerRB() {
-        deanPage.viceDeanSurnameRB.sendKeys(surname);
+    @And("Surname alanina {string} girerRB")
+    public void surnameAlaninaGirerRB(String str) {
+        String surname = faker.name().lastName();
+        if (str.equals("bir soyisim")){
+            deanPage.viceDeanSurnameRB.sendKeys(surname);
+        } else {
+            deanPage.viceDeanSurnameRB.sendKeys(str);
+        }
     }
 
-    @And("Birth Place alanina dogum yeri girerRB")
-    public void birthPlaceAlaninaDogumYeriGirerRB() {
-        deanPage.viceDeanBirthPlaceRB.sendKeys(birthPlace);
+    @And("Birth Place alanina {string} girerRB")
+    public void birthPlaceAlaninaGirerRB(String str) {
+        String birthPlace = faker.lorem().word();
+        if (str.equals("bir yer ismi")){
+            deanPage.viceDeanBirthPlaceRB.sendKeys(birthPlace);
+        } else {
+            deanPage.viceDeanBirthPlaceRB.sendKeys(str);
+            ReusableMethods.bekle(2);
+        }
     }
 
     @And("Gender alaninda {string} cinsiyet secerRB")
@@ -97,30 +113,47 @@ public class US06_StepDefs {
         deanPage.chooseGenderRB(expectedGenderRB);
     }
 
-    @And("Date Of Birth alanini doldururRB")
-    public void dateOfBirthAlaniniDoldururRB() {
-        deanPage.viceDeanBirthDayRB.sendKeys(dateOfBirth2);
+    @And("Date Of Birth alanina {string}girerRB")
+    public void dateOfBirthAlaninaGirerRB(String tarih) {
+        deanPage.viceDeanBirthDayRB.sendKeys(tarih);
+        ReusableMethods.bekle(2);
     }
 
-    @And("Phone alanina telefon numarasi girerRB")
-    public void phoneAlaninaTelefonNumarasiGirerRB() {
-        deanPage.viceDeanPhoneRB.sendKeys(phone1);
+    @And("Phone alanina {string} girerRB")
+    public void phoneAlaninaGirerRB(String str) {
+        if (str.equals("bir telefon numarasi")){
+            String listPhoneNo = faker.regexify("[0-9]{3}-[0-9]{3}-[0-9]{4}");
+            deanPage.viceDeanPhoneRB.sendKeys(listPhoneNo);
+        }else {
+            deanPage.viceDeanPhoneRB.sendKeys(str);
+        }
     }
 
-    @And("Ssn alanina bir Sosyal Guvenlik Numarasi girerRB")
-    public void ssnAlaninaBirSosyalGuvenlikNumarasiGirerRB() {
-        deanPage.viceDeanSsnRB.sendKeys(ssn1);
+    @And("Ssn alanina {string} girerRB")
+    public void ssnAlaninaGirerRB(String str) {
+        if (str.equals("bir telefon numarasi")){
+            String listSsnNo = faker.regexify("[0-9]{3}-[0-9]{2}-[0-9]{4}");
+            deanPage.viceDeanSsnRB.sendKeys(listSsnNo);
+        }else {
+            deanPage.viceDeanSsnRB.sendKeys(str);
+        }
     }
 
-    @And("Username alanina bir kullanici adi girerRB")
-    public void usernameAlaninaBirKullaniciAdiGirerRB() {
-        deanPage.viceDeanUsernameRB.sendKeys(username);
+    @And("Username alanina {string} girerRB")
+    public void usernameAlaninaGirerRB(String str) {
+        String username = faker.random().nextInt(1000, 9999)+ "abc";
+        if (str.equals("bir kullanici adi")){
+            deanPage.viceDeanUsernameRB.sendKeys(username);
+        } else {
+            deanPage.viceDeanUsernameRB.sendKeys(str);
+        }
     }
 
-    @And("Password alanina bir sifre girerRB")
-    public void passwordAlaninaBirSifreGirerRB() {
-        deanPage.viceDeanPasswordRB.sendKeys(password1);
-    }
+
+   @And("Password alanina bir sifre girerRB")
+   public void passwordAlaninaBirSifreGirerRB() {
+       deanPage.viceDeanPasswordRB.sendKeys(password1);
+   }
 
     @And("Submit butonuna tiklarRB")
     public void submitButonunaTiklarRB() {
@@ -312,6 +345,5 @@ public class US06_StepDefs {
     public void oneNumberMesajininGorundugunuDogrular() {
         Assert.assertTrue(deanPage.oneNumberRB.isDisplayed());
     }
-
 
 }
