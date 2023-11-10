@@ -45,4 +45,5 @@ public class US06_DB_StepDefs {
         assertEquals(object.getSurname(), resultSet.getString("surname"));
         assertEquals(object.getUsername(), resultSet.getString("username"));
     }
+
 }
