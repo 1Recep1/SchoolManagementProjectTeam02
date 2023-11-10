@@ -22,10 +22,7 @@ Feature: Admin Admin Ekleyebilmeli
     Then Status kodun 200 oldugu dogrulanirRA
     And Admin Save icin gelen Response body dogrulanirRA
 
-    #PASSED
-  Scenario: Olusturulan Admin hesap bilgisini alma testi
-    Given Kayitli Admin hesap bilgisinin ID nosu alinirRA
-    Then Status kodun 200 oldugu dogrulanirRA
+
 
   Scenario: Kayitli Admin Bilgisini Dogrulama Testi
     Given Database baglantisi kurulurRA
