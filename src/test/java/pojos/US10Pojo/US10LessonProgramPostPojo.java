@@ -3,10 +3,10 @@ package pojos.US10Pojo;
 import java.util.List;
 import java.io.Serializable;
 
-public class US10_ViceDeanPostPojo implements Serializable {
+public class US10LessonProgramPostPojo implements Serializable {
 	private String day;
-	private String educationTermId;
-	private List<String> lessonIdList;
+	private int educationTermId;
+	private List<Integer> lessonIdList;
 	private String startTime;
 	private String stopTime;
 
@@ -18,19 +18,30 @@ public class US10_ViceDeanPostPojo implements Serializable {
 		return day;
 	}
 
-	public void setEducationTermId(String educationTermId){
+	public US10LessonProgramPostPojo(String day, int educationTermId, List<Integer> lessonIdList, String startTime, String stopTime) {
+		this.day = day;
+		this.educationTermId = educationTermId;
+		this.lessonIdList = lessonIdList;
+		this.startTime = startTime;
+		this.stopTime = stopTime;
+	}
+
+	public US10LessonProgramPostPojo() {
+	}
+
+	public void setEducationTermId(int educationTermId){
 		this.educationTermId = educationTermId;
 	}
 
-	public String getEducationTermId(){
+	public int getEducationTermId(){
 		return educationTermId;
 	}
 
-	public void setLessonIdList(List<String> lessonIdList){
+	public void setLessonIdList(List<Integer> lessonIdList){
 		this.lessonIdList = lessonIdList;
 	}
 
-	public List<String> getLessonIdList(){
+	public List<Integer> getLessonIdList(){
 		return lessonIdList;
 	}
 
@@ -50,21 +61,10 @@ public class US10_ViceDeanPostPojo implements Serializable {
 		return stopTime;
 	}
 
-	public US10_ViceDeanPostPojo() {
-	}
-
-	public US10_ViceDeanPostPojo(String day, String educationTermId, List<String> lessonIdList, String startTime, String stopTime) {
-		this.day = day;
-		this.educationTermId = educationTermId;
-		this.lessonIdList = lessonIdList;
-		this.startTime = startTime;
-		this.stopTime = stopTime;
-	}
-
 	@Override
  	public String toString(){
 		return 
-			"ViceDeanPostPojo{" + 
+			"US10LessonProgramPostPojo{" + 
 			"day = '" + day + '\'' + 
 			",educationTermId = '" + educationTermId + '\'' + 
 			",lessonIdList = '" + lessonIdList + '\'' + 
