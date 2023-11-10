@@ -13,6 +13,7 @@ public class US22_ObjectPojo implements Serializable {
 	private String phoneNumber;
 	private String gender;
 
+
 	public void setUserId(int userId){
 		this.userId = userId;
 	}

@@ -15,7 +15,7 @@ import java.util.List;
 import static baseUrl.ManagementSchoolUrl.adminSetup;
 import static baseUrl.ManagementSchoolUrl.spec;
 import static io.restassured.RestAssured.given;
-import static stepDefinitions.api_step_defs.US06_API_StepDefs.userId;
+import static org.hamcrest.Matchers.*;
 
 public class US22_API_StepDefs {
 
@@ -35,8 +35,7 @@ public class US22_API_StepDefs {
     Response response;
     US22_ResponsePojo actualData;
     US22_AdminPostPojo payload;
-    int userId;
-
+    static int userIdRA;
 
     @Given("Admin Save icin URL duzenlenirRA")
     public void adminSaveIcinURLDuzenlenirRA() {
@@ -60,6 +59,8 @@ public class US22_API_StepDefs {
     @When("Admin Save icn POST Request gonderilir ve Response alinirRA")
     public void adminSaveIcnPOSTRequestGonderilirVeResponseAlinirRA() {
         response = given(spec).body(payload).when().post("{first}/{second}");
+        userIdRA = response.jsonPath().getInt("object.userId");
+        System.out.println("userIdRA = " + userIdRA);
         response.prettyPrint();
         actualData = response.as(US22_ResponsePojo.class);
     }
@@ -79,23 +80,13 @@ public class US22_API_StepDefs {
         Assert.assertEquals(payload.getSsn(), actualData.getObject().getSsn());
         Assert.assertEquals(payload.getSurname(), actualData.getObject().getSurname());
         Assert.assertEquals(payload.getUsername(), actualData.getObject().getUsername());
-    }
-
-    @Given("Kayitli Admin hesap bilgisinin ID nosu alinirRA")
-    public void kayitliAdminHesapBilgisininIDNosuAlinirRA() {
-        adminSetup();
-        spec.pathParams("first", "admin", "second", "getAll").queryParam("size", "1000");
-        response = given(spec).when().get("{first}/{second}");
-        response.prettyPrint();
-        JsonPath json= response.jsonPath();
-        List<Integer> userIdList =json.getList("findAll{it.username=='RamazanB2'}.userId");
-        userId=userIdList.get(0);
-        System.out.println("RamazanB2'nin user IDsi  = " + userId);
+        Assert.assertEquals("Admin Saved", actualData.getMessage());
+        Assert.assertEquals("CREATED", actualData.getHttpStatus());
     }
 
     @Given("Admin Delete icin URL duzenlenirRA")
     public void adminDeleteIcinURLDuzenlenirRA() {
-        spec.pathParams("first", "admin", "second", "delete", "third", userId);
+        spec.pathParams("first", "admin", "second", "delete", "third", userIdRA);
     }
 
 
