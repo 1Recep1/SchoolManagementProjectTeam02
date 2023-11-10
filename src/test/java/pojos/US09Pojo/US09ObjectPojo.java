@@ -1,12 +1,22 @@
-package pojos.US10Pojo;
+package pojos.US09Pojo;
 
 import java.io.Serializable;
 
-public class US10_ViceDean_Response_LessonNamePojo implements Serializable {
+public class US09ObjectPojo implements Serializable {
 	private int lessonId;
 	private String lessonName;
 	private int creditScore;
 	private boolean compulsory;
+
+	public US09ObjectPojo() {
+	}
+
+	public US09ObjectPojo(int lessonId, String lessonName, int creditScore, boolean compulsory) {
+		this.lessonId = lessonId;
+		this.lessonName = lessonName;
+		this.creditScore = creditScore;
+		this.compulsory = compulsory;
+	}
 
 	public void setLessonId(int lessonId){
 		this.lessonId = lessonId;
@@ -40,20 +50,10 @@ public class US10_ViceDean_Response_LessonNamePojo implements Serializable {
 		return compulsory;
 	}
 
-	public US10_ViceDean_Response_LessonNamePojo() {
-	}
-
-	public US10_ViceDean_Response_LessonNamePojo(int lessonId, String lessonName, int creditScore, boolean compulsory) {
-		this.lessonId = lessonId;
-		this.lessonName = lessonName;
-		this.creditScore = creditScore;
-		this.compulsory = compulsory;
-	}
-
 	@Override
  	public String toString(){
 		return 
-			"LessonNamePojo{" + 
+			"ObjectPojo{" + 
 			"lessonId = '" + lessonId + '\'' + 
 			",lessonName = '" + lessonName + '\'' + 
 			",creditScore = '" + creditScore + '\'' + 

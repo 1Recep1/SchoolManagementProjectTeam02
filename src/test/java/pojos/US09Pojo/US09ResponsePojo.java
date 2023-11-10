@@ -1,17 +1,26 @@
-package pojos.US10Pojo;
+package pojos.US09Pojo;
 
 import java.io.Serializable;
 
-public class US10_ViceDeanResponsePojo implements Serializable {
-	private US10_ViceDean_Response_ObjectPojo object;
+public class US09ResponsePojo implements Serializable {
+	private US09ObjectPojo object;
 	private String message;
 	private String httpStatus;
 
-	public void setObject(US10_ViceDean_Response_ObjectPojo object){
+	public US09ResponsePojo() {
+	}
+
+	public US09ResponsePojo(US09ObjectPojo object, String message, String httpStatus) {
+		this.object = object;
+		this.message = message;
+		this.httpStatus = httpStatus;
+	}
+
+	public void setObject(US09ObjectPojo object){
 		this.object = object;
 	}
 
-	public US10_ViceDean_Response_ObjectPojo getObject(){
+	public US09ObjectPojo getObject(){
 		return object;
 	}
 
@@ -31,19 +40,10 @@ public class US10_ViceDeanResponsePojo implements Serializable {
 		return httpStatus;
 	}
 
-	public US10_ViceDeanResponsePojo() {
-	}
-
-	public US10_ViceDeanResponsePojo(US10_ViceDean_Response_ObjectPojo object, String message, String httpStatus) {
-		this.object = object;
-		this.message = message;
-		this.httpStatus = httpStatus;
-	}
-
 	@Override
  	public String toString(){
 		return 
-			"US10Pojo{" + 
+			"US09ResponsePojo{" + 
 			"object = '" + object + '\'' + 
 			",message = '" + message + '\'' + 
 			",httpStatus = '" + httpStatus + '\'' + 
