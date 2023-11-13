@@ -15,8 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static baseUrl.ManagementSchoolUrl.adminSetup;
-import static baseUrl.ManagementSchoolUrl.spec;
+import static baseUrl.ManagementSchoolUrl.*;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
@@ -40,7 +39,7 @@ public class US04_API_StepDefs {
 
     @Given("User sends the post requestEr")
     public void user_sends_the_post_request_er() throws ParseException {
-        adminSetup();
+        setup("AdminTeam2","AdminTeam2");
         //https://managementonschools.com/app/dean/save
         spec.pathParams("first","dean","second","save");
 

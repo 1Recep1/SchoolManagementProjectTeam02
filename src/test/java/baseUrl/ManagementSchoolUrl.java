@@ -48,5 +48,12 @@ public class ManagementSchoolUrl extends Authentication {
                 .setContentType(ContentType.JSON)
                 .build();
     }
+    public static void viceSetup(String username, String password){
+        spec = new RequestSpecBuilder()
+                .setBaseUri("https://managementonschools.com/app")
+                .addHeader("Authorization", generateToken(username, password))
+                .setContentType(ContentType.JSON)
+                .build();
+    }
 }
 
