@@ -1,5 +1,8 @@
 package pojos.US10Pojo;
 
+import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonCreator;
+import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class US10LessonProgramLessonNamePojo implements Serializable {
@@ -8,12 +11,20 @@ public class US10LessonProgramLessonNamePojo implements Serializable {
 	private int creditScore;
 	private boolean compulsory;
 
-	public US10LessonProgramLessonNamePojo(int lessonId, String lessonName, int creditScore, boolean compulsory) {
+	public US10LessonProgramLessonNamePojo() {
+	}
+	@JsonCreator
+	public US10LessonProgramLessonNamePojo(
+			@JsonProperty("lessonId") int lessonId,
+			@JsonProperty("lessonName") String lessonName,
+			@JsonProperty("creditScore") int creditScore,
+			@JsonProperty("compulsory") boolean compulsory) {
 		this.lessonId = lessonId;
 		this.lessonName = lessonName;
 		this.creditScore = creditScore;
 		this.compulsory = compulsory;
 	}
+
 
 	public void setLessonId(int lessonId){
 		this.lessonId = lessonId;

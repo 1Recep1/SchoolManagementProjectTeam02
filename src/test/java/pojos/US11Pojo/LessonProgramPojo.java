@@ -1,8 +1,12 @@
 package pojos.US11Pojo;
 
+import pojos.US10Pojo.LessonNamePojo;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class LessonProgramPojo {
+    private List<LessonNamePojo> lessonName;
     private String day;
     private Integer educationTermId;
 
