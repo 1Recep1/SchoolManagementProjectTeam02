@@ -13,7 +13,6 @@ public class Us_07_ApiStepDefs {
 
     @Given("Mesajlari almak icin Get request hazirligi yapilirMsk")
     public void mesajlari_almak_icin_get_request_hazirligi_yapilirMsk() {
-        //https://managementonschools.com/app/contactMessages/getAll?page=0&size=10&sort=date&type=desc
 
         spec.pathParams("first", "contactMessages", "second", "getAll")
                 .queryParam("size", "5000");
@@ -24,11 +23,11 @@ public class Us_07_ApiStepDefs {
     @Then("Verify Body : name={string}, email={string}, subject={string},message={string},date={string}\"")
     public void verify_body_name_email_subject_message_date(String name, String email, String subject, String message, String date) {
         JsonPath json = response.jsonPath();
-        String actName = json.getList("content.findAll{it.email=='yusuf123@gmail.com'}.name").get(0).toString();
-        String actEmail = json.getList("content.findAll{it.email=='yusuf123@gmail.com'}.email").get(0).toString();
-        String actSubject = json.getList("content.findAll{it.email=='yusuf123@gmail.com'}.subject").get(0).toString();
-        String actMessage = json.getList("content.findAll{it.email=='yusuf123@gmail.com'}.message").get(0).toString();
-        String actDate = json.getList("content.findAll{it.email=='yusuf123@gmail.com'}.date").get(0).toString();
+        String actName = json.getList("content.findAll{it.email=='smt@gmail.com'}.name").get(0).toString();
+        String actEmail = json.getList("content.findAll{it.email=='smt@gmail.com'}.email").get(0).toString();
+        String actSubject = json.getList("content.findAll{it.email=='smt@gmail.com'}.subject").get(0).toString();
+        String actMessage = json.getList("content.findAll{it.email=='smt@gmail.com'}.message").get(0).toString();
+        String actDate = json.getList("content.findAll{it.email=='smt@gmail.com'}.date").get(0).toString();
 
         assertEquals(200, response.statusCode());
         assertEquals(actName, name);
