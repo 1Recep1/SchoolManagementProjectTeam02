@@ -1,14 +1,10 @@
 @RamazanE2E
 Feature: Admin Admin Ekleyebilmeli
 
-  Background: Management School sayfasinda Admin olarak login olunur
-    Given Kullanici Management sayfasina giderRA
-    Then Kullanici Admin olarak login olurRA
-   # And Kullanici Menu sekmesine tiklarRA
-   # And Admin Management' e tiklaRA
-
   @UI  #PASSED
   Scenario:TC01 Tum alanlar doldurularak admin ekleme olusturulabilmelidir
+    Given Kullanici Management sayfasina giderRA
+    Then Kullanici Admin olarak login olurRA
     Given Name, Surname, Birth Place, Cinsiyet, E-mail, Phone Number, Date of Birth, SSN, User Name, Password girilirRA
     Then Submit butonuna tiklaRA
     And Admin olustugu dogrulaRA
@@ -21,7 +17,6 @@ Feature: Admin Admin Ekleyebilmeli
     When Admin Save icn POST Request gonderilir ve Response alinirRA
     Then Status kodun 200 oldugu dogrulanirRA
     And Admin Save icin gelen Response body dogrulanirRA
-
 
 
   Scenario: Kayitli Admin Bilgisini Dogrulama Testi

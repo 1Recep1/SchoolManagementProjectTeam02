@@ -87,11 +87,13 @@ public class US22_API_StepDefs {
     @Given("Admin Delete icin URL duzenlenirRA")
     public void adminDeleteIcinURLDuzenlenirRA() {
         spec.pathParams("first", "admin", "second", "delete", "third", userIdRA);
+
     }
 
 
     @When("Admin Delete icin Delete Request gonderilir ve Response alinirRA")
     public void adminDeleteIcinDeleteRequestGonderilirVeResponseAlinirRA() {
-        response = given(spec).when().delete("{first}/{second}{third}}");
+        response = given(spec).when().delete("{first}/{second}/{third}");
+
     }
 }
