@@ -4,10 +4,10 @@ import java.util.List;
 import java.io.Serializable;
 
 public class US10LessonProgramObjectPojo implements Serializable {
+	private List<US10LessonProgramLessonNamePojo> lessonName;
 	private int lessonProgramId;
 	private String startTime;
 	private String stopTime;
-	private List<US10LessonProgramLessonNamePojo> lessonName;
 	private String day;
 
 	public US10LessonProgramObjectPojo(int lessonProgramId, String startTime, String stopTime, List<US10LessonProgramLessonNamePojo> lessonName, String day) {

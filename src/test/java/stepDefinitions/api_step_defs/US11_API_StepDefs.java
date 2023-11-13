@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import pojos.US10Pojo.*;
 
+import java.util.Collections;
 import java.util.List;
 
 import static baseUrl.ManagementSchoolUrl.spec;
@@ -24,15 +25,13 @@ public class US11_API_StepDefs {
     public void editingTheURLToViewALessonProgramIO() {
         //https://managementonschools.com/app/lessonPrograms/getById/1
         spec.pathParams("first","lessonPrograms","second","getById","third",lessonProgramId);
-
-    }
-    @And("Preparing the expected data for getLessonProgramByIdIO")
+ }
+   @And("Preparing the expected data for getLessonProgramByIdIO")
     public void preparingTheExpectedDataForGetLessonProgramByIdIO() {
         lessonNameObject = new US10LessonProgramLessonNamePojo(3104,"Dutch101",8,true);
-        object = new US10LessonProgramObjectPojo(lessonProgramId,"13:00:00","15:00:00", (List<US10LessonProgramLessonNamePojo>) lessonNameObject,"TUESDAY");
-        expectedData = new US11LessonProgramGetResponsePojo(lessonProgramId,"13:00:00","15:00:00", (List<LessonNamePojo>) lessonNameObject,null,null,"TUESDAY");
-
-
+        List<US10LessonProgramLessonNamePojo> lessonNameList = Collections.singletonList(lessonNameObject);
+        object = new US10LessonProgramObjectPojo(lessonProgramId,"13:00:00","15:00:00", lessonNameList, "TUESDAY");
+        expectedData = new US11LessonProgramGetResponsePojo(lessonProgramId,"13:00:00","15:00:00", lessonNameList, null, null, "TUESDAY");
 
     }
 

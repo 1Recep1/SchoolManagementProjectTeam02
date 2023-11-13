@@ -10,7 +10,7 @@ import pojos.US09Pojo.US09DeleteLessonPojo;
 import pojos.US09Pojo.US09LessonPostPojo;
 import pojos.US09Pojo.US09ObjectPojo;
 import pojos.US09Pojo.US09ResponsePojo;
-import org.testng.Assert;
+
 
 import java.util.List;
 
@@ -90,9 +90,7 @@ public class US09_API_StepDefs {
 
 
         spec.pathParams("first","lessons","second","getAllLessonByLessonId","third",lessonId);
-       //spec.pathParams("first","lessons","second","getLessonByName","third",lessonName);
 
-       // spec.basePath("/lessons/getAllLessonByLessonId/" + lessonId);
     }
 
     @And("Preparing the expected data for getLessonByIdIO")
@@ -106,9 +104,13 @@ public class US09_API_StepDefs {
     @When("Sending a GET Request to View the Created Lesson and Receiving a ResponseIO")
     public void sendingAGETRequestToViewTheCreatedLessonAndReceivingAResponseIO() {
         response = given(spec).when().get("{first}/{second}/{third}");
+        //spec.pathParams("first","lessons","second","getLessonByName","third",lessonName);
+        // spec.basePath("/lessons/getAllLessonByLessonId/" + lessonId);
+        JsonPath json = response.jsonPath();
+        List<Integer> lessonIdList = json.getList("findAll{it.lessonName=='Dutch'}.lessonId");
+        lessonId = lessonIdList.get(0);
         response.prettyPrint();
         actualData = response.as(US09ResponsePojo.class);
-
     }
 
     @And("Verifying the Response Body for the Created LessonIO")
@@ -117,8 +119,8 @@ public class US09_API_StepDefs {
         assertEquals(expectedData.getObject().getCreditScore(),actualData.getObject().getCreditScore());
         assertEquals(expectedData.getObject().getLessonId(),actualData.getObject().getLessonId());
         assertEquals(expectedData.getObject().isCompulsory(),actualData.getObject().isCompulsory());
-      //  assertEquals(expectedData.getMessage(),actualData.getMessage());
-     //   assertEquals(expectedData.getHttpStatus(),actualData.getHttpStatus());
+      assertEquals(expectedData.getMessage(),actualData.getMessage());
+      assertEquals(expectedData.getHttpStatus(),actualData.getHttpStatus());
     }
 
     @Given("Editing the URL for delete the created lessonIO")

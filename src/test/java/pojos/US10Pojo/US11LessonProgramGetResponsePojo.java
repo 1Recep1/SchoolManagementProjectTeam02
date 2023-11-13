@@ -1,7 +1,10 @@
 package pojos.US10Pojo;
 
+import pojos.US09Pojo.*;
+
 import java.util.List;
 import java.io.Serializable;
+import java.util.stream.Collectors;
 
 public class US11LessonProgramGetResponsePojo implements Serializable {
 	private int lessonProgramId;
@@ -15,15 +18,21 @@ public class US11LessonProgramGetResponsePojo implements Serializable {
 	public US11LessonProgramGetResponsePojo() {
 	}
 
-	public US11LessonProgramGetResponsePojo(int lessonProgramId, String startTime, String stopTime, List<LessonNamePojo> lessonName, List<Object> teachers, List<Object> students, String day) {
+	public US11LessonProgramGetResponsePojo(int lessonProgramId, String startTime, String stopTime, List<US10LessonProgramLessonNamePojo> lessonNameList, Object teachers, Object students, String day) {
 		this.lessonProgramId = lessonProgramId;
 		this.startTime = startTime;
 		this.stopTime = stopTime;
-		this.lessonName = lessonName;
-		this.teachers = teachers;
-		this.students = students;
+
+		// Bu kısmı güncelledik
+		this.lessonName = lessonNameList.stream()
+				.map(pojo -> new LessonNamePojo(pojo.getLessonId(),pojo.getLessonName(),pojo.getCreditScore(),pojo.isCompulsory()))
+
+				.collect(Collectors.toList());
+		this.teachers = (List<Object>) teachers;
+		this.students = (List<Object>) students;
 		this.day = day;
 	}
+
 
 	public void setLessonProgramId(int lessonProgramId){
 		this.lessonProgramId = lessonProgramId;
