@@ -1,4 +1,4 @@
-@RamazanDB
+@RamazanDB_US22
 Feature: Admin Bilgisi Dogrulama
   Scenario: Kayitli Admin Bilgisini Dogrulama Testi
     Given Database baglantisi kurulurRA

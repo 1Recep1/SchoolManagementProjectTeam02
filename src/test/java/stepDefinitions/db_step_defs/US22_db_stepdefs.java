@@ -12,15 +12,17 @@ public class US22_db_stepdefs {
     Connection connection;
     ResultSet resultSet;
     Statement statement;
+
     @Given("Database baglantisi kurulurRA")
     public void databaseBaglantisiKurulurRA() throws SQLException {
-         connection= DriverManager.getConnection("jdbc:postgresql://managementonscgools.com:5432/school_management","select_user","43w5ijfso");
+        connection = DriverManager.getConnection("jdbc:postgresql://managementonschools.com:5432/school_management", "select_user", "43w5ijfso");
+
     }
 
     @And("Kayitli Admin hesap bilgisini almak icin Qery gonderilirRA")
     public void kayitliAdminHesapBilgisiniAlmakIcinQeryGonderilirRA() throws SQLException {
-        statement=connection.createStatement();
-        resultSet=statement.executeQuery("select* from admins where username='RamazanB2'");
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("select* from admins where username='RamazanB2'");
 
     }
 
