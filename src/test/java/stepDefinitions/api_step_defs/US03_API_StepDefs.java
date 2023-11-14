@@ -1,5 +1,6 @@
 package stepDefinitions.api_step_defs;
 
+import baseUrl.ManagementSchoolUrl;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
@@ -20,7 +21,8 @@ public class US03_API_StepDefs {
     public void user_sends_the_post_request() {
 
         //https://managementonschools.com/app/contactMessages/save
-        setup();
+        setup("AdminTeam2","AdminTeam2");
+
         spec.pathParams("first", "contactMessages", "second", "save");
 
         expectedData = new US03PostPojo("dave@gmail.com", "Hello Java$$$", "John", "Techpro");
