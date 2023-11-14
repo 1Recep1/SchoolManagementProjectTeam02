@@ -79,8 +79,9 @@ public class US10_API_StepDefs {
 
     @Given("Editing the URL to delete a created lesson programIO")
     public void editingTheURLToDeleteACreatedLessonProgramIO() {
-        spec.pathParams("first","lessons","second","delete", "third",lessonProgramId);
+       // spec.pathParams("first","lessons","second","delete", "third",lessonProgramId);
 
+        spec.pathParams("first", "lessonPrograms", "second", "delete", "third",  lessonProgramId);
 
     }
 
@@ -103,4 +104,8 @@ public class US10_API_StepDefs {
 
     }
 
+    @Then("Verifying that the Status Code is {int}-IO")
+    public void verifyingThatTheStatusCodeIsIO(int statuscode) {
+        assertEquals(statuscode, response.statusCode());
+    }
 }

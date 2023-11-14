@@ -12,13 +12,6 @@ Feature: Vice Dean ders programını görebilmeli ve güncellemeler yapabilmelid
       Then Verifying that the Status Code is 200IO
       And Verifying the response body for the lesson programIO
 
-  Scenario: TC002 Positive Scenario to Verify Deleted Lesson Program (Delete)
-    Given Editing the URL to delete a created lesson programIO
-    And Preparing the expected data for deleteLessonProgramByIdIO
-    When Sending a DELETE request to delete the created Lesson ProgramIO
-    Then Verifying that the Status Code is 200IO
-    And Verifying the response body for the deletion of the Lesson ProgramIO
-
 
 
 

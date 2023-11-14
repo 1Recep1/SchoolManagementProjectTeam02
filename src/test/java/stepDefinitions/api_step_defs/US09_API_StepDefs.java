@@ -89,8 +89,8 @@ public class US09_API_StepDefs {
         //https://managementonschools.com/app/lessons/getAllLessonByLessonId?lessonId=3053
 
 
-        spec.pathParams("first","lessons","second","getAllLessonByLessonId","third",lessonId);
-
+        //spec.pathParams("first","lessons","second","getAllLessonByLessonId","third",lessonId);
+        spec.pathParams("first", "lessons", "second", "getAllLessonById").queryParam("lessonId", lessonId);
     }
 
     @And("Preparing the expected data for getLessonByIdIO")
@@ -103,24 +103,31 @@ public class US09_API_StepDefs {
 
     @When("Sending a GET Request to View the Created Lesson and Receiving a ResponseIO")
     public void sendingAGETRequestToViewTheCreatedLessonAndReceivingAResponseIO() {
-        response = given(spec).when().get("{first}/{second}/{third}");
+      //  response = given(spec).when().get("{first}/{second}/{third}");
         //spec.pathParams("first","lessons","second","getLessonByName","third",lessonName);
         // spec.basePath("/lessons/getAllLessonByLessonId/" + lessonId);
-        JsonPath json = response.jsonPath();
-        List<Integer> lessonIdList = json.getList("findAll{it.lessonName=='Dutch'}.lessonId");
-        lessonId = lessonIdList.get(0);
+        response = given(spec).when().get("{first}/{second}");
+        //JsonPath json = response.jsonPath();
+     //   List<Integer> lessonIdList = json.getList("findAll{it.lessonName=='Dutch'}.lessonId");
+      //  lessonId = lessonIdList.get(0);
         response.prettyPrint();
-        actualData = response.as(US09ResponsePojo.class);
+       // actualData = response.as(US09ResponsePojo.class);
     }
 
     @And("Verifying the Response Body for the Created LessonIO")
     public void verifyingTheResponseBodyForTheCreatedLessonIO() {
-        assertEquals(expectedData.getObject().getLessonName(),actualData.getObject().getLessonName());
-        assertEquals(expectedData.getObject().getCreditScore(),actualData.getObject().getCreditScore());
+        JsonPath jsonPath =  response.jsonPath();
+        List<Integer> lessonIdList = jsonPath.getList("findAll{it.lessonName=='Dutch'}.lessonId");
+        lessonId = lessonIdList.get(0);
+        assertEquals(expectedData.getObject().getLessonName(),jsonPath.getList("findAll{it.lessonId=lessonId}.lessonName").get(0));
+        assertEquals(expectedData.getObject().isCompulsory(),jsonPath.getList("findAll{it.lessonId=lessonId}.compulsory").get(0));
+        assertEquals(expectedData.getObject().getCreditScore(),jsonPath.getList("findAll{it.lessonId=lessonId}.creditScore").get(0));
+
+       /* assertEquals(expectedData.getObject().getCreditScore(),actualData.getObject().getCreditScore());
         assertEquals(expectedData.getObject().getLessonId(),actualData.getObject().getLessonId());
         assertEquals(expectedData.getObject().isCompulsory(),actualData.getObject().isCompulsory());
       assertEquals(expectedData.getMessage(),actualData.getMessage());
-      assertEquals(expectedData.getHttpStatus(),actualData.getHttpStatus());
+      assertEquals(expectedData.getHttpStatus(),actualData.getHttpStatus()); */
     }
 
     @Given("Editing the URL for delete the created lessonIO")

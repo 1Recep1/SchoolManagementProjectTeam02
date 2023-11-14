@@ -3,7 +3,7 @@ Feature: Vice Dean ders listesini gorebilmeli ve guncellemeler yapabilmelidir.
   (Lessons - Lesson List)
   Background: Login - Vice Dean
     Given Vice Dean is on "https://managementonschools.com/"IO
-
+@first
     Scenario: Oluşturulan; Lesson Name, Compulsory ve Credit Score görebilmelidir.
     TC001 - Positive Scenario (Post)
       Given Editing the URL for Creating a LessonIO
@@ -11,7 +11,7 @@ Feature: Vice Dean ders listesini gorebilmeli ve guncellemeler yapabilmelidir.
       When  Sending a POST Request for Creating a Lesson and Receiving a ResponseIO
       Then Verifying that the Status Code is 200IO
       And Verifying the Response Body for Created LessonIO
-
+@second
   Scenario: TC002 - Positive Scenario to Created Lesson (Get)
     Given Get ID number of the saved lesson
     And Editing the URL for getAllLessonByLessonIdIO
@@ -19,7 +19,7 @@ Feature: Vice Dean ders listesini gorebilmeli ve guncellemeler yapabilmelidir.
     When Sending a GET Request to View the Created Lesson and Receiving a ResponseIO
     Then Verifying that the Status Code is 200IO
     And Verifying the Response Body for the Created LessonIO
-
+@third
   Scenario: TC003 -Delete a specific lesson and verify deletion(Delete)
   Given Editing the URL for delete the created lessonIO
     And Preparing the expected data for deleteLessonByIdIO
