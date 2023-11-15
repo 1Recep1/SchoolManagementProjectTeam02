@@ -64,23 +64,6 @@ public class US23_StepDefs {
         ReusableMethods.bekle(2);
     }
 
-    @Given("Admin Vice Dean Management sayfasinda Name, Surname, Birth Place alanlarini doldururRB")
-    public void adminViceDeanManagementSayfasindaNameSurnameBirthPlaceAlanlariniDoldururRB() {
-        deanPage.viceDeanNameRB.sendKeys(name, Keys.TAB, surname, Keys.TAB, birthPlace);
-        ReusableMethods.bekle(2);
-    }
-
-    @When("Admin Gender alaninda {string} cinsiyet secerRB")
-    public void adminGenderAlanindaFemaleCinsiyetSecerRB(String expectedGenderRB) {
-        deanPage.chooseGenderRB(expectedGenderRB);
-        ReusableMethods.bekle(2);
-    }
-
-    @And("Date Of Birth, Phone, Ssn, User Name ve Password alanlarini doldururRB")
-    public void dateOfBirthPhoneSsnUserNameVePasswordAlanlariniDoldururRB() {
-        deanPage.viceDeanBirthDayRB.sendKeys(dateOfBirth2, Keys.TAB, phone1, Keys.TAB, ssn1, Keys.TAB, username,Keys.TAB, password1);
-        ReusableMethods.bekle(2);
-    }
 
     @And("Admin Vice dean saved mesajinin gorundugunu dogrularRB")
     public void adminViceDeanSavedMesajininGorundugunuDogrularRB() {
@@ -91,6 +74,18 @@ public class US23_StepDefs {
     @And("Date Of Birth, Ssn, User Name ve Password alanlarini doldururRB")
     public void dateOfBirthSsnUserNameVePasswordAlanlariniDoldururRB() {
         deanPage.viceDeanBirthDayRB.sendKeys(dateOfBirth2, Keys.TAB, Keys.TAB, ssn1, Keys.TAB, username, Keys.TAB, password1);
+        ReusableMethods.bekle(2);
+    }
+
+    @Given("Admin Vice Dean Management sayfasinda Name, Surname, Birth Place alanlarini doldururRB")
+    public void adminViceDeanManagementSayfasindaNameSurnameBirthPlaceAlanlariniDoldururRB() {
+        deanPage.viceDeanNameRB.sendKeys(name, Keys.TAB, surname, Keys.TAB, birthPlace);
+        ReusableMethods.bekle(2);
+    }
+
+    @When("Admin Gender alaninda {string} cinsiyet secerRB")
+    public void adminGenderAlanindaMaleCinsiyetSecerRB(String expectedGenderRB) {
+        deanPage.chooseGenderRB(expectedGenderRB);
         ReusableMethods.bekle(2);
     }
 }

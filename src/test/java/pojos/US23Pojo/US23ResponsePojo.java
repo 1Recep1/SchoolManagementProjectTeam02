@@ -2,16 +2,16 @@ package pojos.US23Pojo;
 
 import java.io.Serializable;
 
-public class ViceDeanInfoPojo implements Serializable {
-	private ObjectPojo object;
+public class US23ResponsePojo implements Serializable {
+	private US23ObjectPojo object;
 	private String message;
 	private String httpStatus;
 
-	public void setObject(ObjectPojo object){
+	public void setObject(US23ObjectPojo object){
 		this.object = object;
 	}
 
-	public ObjectPojo getObject(){
+	public US23ObjectPojo getObject(){
 		return object;
 	}
 
@@ -31,10 +31,10 @@ public class ViceDeanInfoPojo implements Serializable {
 		return httpStatus;
 	}
 
-	public ViceDeanInfoPojo() {
+	public US23ResponsePojo() {
 	}
 
-	public ViceDeanInfoPojo(ObjectPojo object, String message, String httpStatus) {
+	public US23ResponsePojo(US23ObjectPojo object, String message, String httpStatus) {
 		this.object = object;
 		this.message = message;
 		this.httpStatus = httpStatus;

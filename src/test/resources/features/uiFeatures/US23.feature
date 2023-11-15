@@ -6,23 +6,28 @@ Feature: US23 Admin, Vice Dean hesabi olusturabilmeli
     And Kullanici Menu butonuna tiklarRB
     And Acilan sayfadan Vice Dean Management kismina tiklarRB
 
-  @US23-TC01
   Scenario: TC01 Admin Web Sitesinde Vice Dean olusturabilmeliRB
-    Given Admin Vice Dean Management sayfasinda Name, Surname, Birth Place alanlarini doldururRB
-    When Admin Gender alaninda 'Female' cinsiyet secerRB
-    And Date Of Birth, Phone, Ssn, User Name ve Password alanlarini doldururRB
+    Given Kullanici Vice Dean Management sayfasinda Name alanina "Elizabeth" girerRB
+    When Surname alanina "Olsen" girerRB
+    And Birth Place alanina "Sherman Oaks" girerRB
+    And Gender alaninda 'Female' cinsiyet secerRB
+    And Date Of Birth alanina "02161989"girerRB
+    And Phone alanina "224-875-9205" girerRB
+    And Ssn alanina "531-42-2352" girerRB
+    And Username alanina "WandaVision" girerRB
+    And Password alanina bir sifre girerRB
     And Submit butonuna tiklarRB
     And Admin Vice dean saved mesajinin gorundugunu dogrularRB
     Then Sayfayi kapatirRB
 
-  @US23-TC02
+
   Scenario: TC02 Zorunlu alanlar bos birakildiginda kayit islemi gerceklesmemeliRB
     Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender, Date Of Birth, Phone, Ssn, Username ve Password alanlarini bos birakirRB
     When Submit butonuna tiklarRB
     And Kaydin gerceklesmedigini dogrularRB
     And Sayfayi kapatirRB
 
-  @US23-TC03
+
   Scenario: TC03 Phone formatina uygun bir sekilde yazilmadiginda gerceklesmemeliRB
     Given Admin Vice Dean Management sayfasinda Name, Surname, Birth Place alanlarini doldururRB
     When Admin Gender alaninda 'Male' cinsiyet secerRB
@@ -39,7 +44,7 @@ Feature: US23 Admin, Vice Dean hesabi olusturabilmeli
     And  Please enter valid phone number mesajinin gorundugunu dogrularRB
     And Sayfayi kapatirRB
 
-  @US23-TC04
+
   Scenario: TC04 Ssn, formatina uygun bir sekilde yazilmadiginda kayit islemi gerceklesmemeliRB
     Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Female' Date Of Birth, Phone, Username ve Password alanlarini doldururRB
     When Ssn alaninda ucuncu rakamdan sonra farkli bir isaret girerRB
@@ -62,7 +67,7 @@ Feature: US23 Admin, Vice Dean hesabi olusturabilmeli
     And Please enter valid SSN number mesajinin gorundugunu dogrularRB
     And Sayfayi kapatirRB
 
-  @US23-TC05
+
   Scenario: TC05 Password, en az 8 karakterden olusmaliRB
     Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Male' Date Of Birth, Phone, Ssn ve Username alanlarini doldururRB
     When Password alanina yedi haneli bir sifre girerRB
@@ -74,7 +79,7 @@ Feature: US23 Admin, Vice Dean hesabi olusturabilmeli
     And Vice dean saved mesajinin gorundugunu dogrularRB
     And Sayfayi kapatirRB
 
-  @US23-TC06
+
   Scenario: TC06 Password, buyuk harf, kucuk harf ve rakam icermelidir.
     Given Kullanici Vice Dean Management sayfasinda Name, Surname, Birth Place, Gender 'Female' Date Of Birth, Phone, Ssn ve Username alanlarini doldururRB
     When Password alanina buyuk harf ve rakamlardan olusan bir sifre girer

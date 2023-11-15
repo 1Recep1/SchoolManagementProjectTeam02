@@ -26,7 +26,6 @@ public class US06_API_StepDefs {
     Response response;
     US06ResponsePojo actualData;
     public US06ResponseValidationpojo responseValidationpojo;
-    public Validationspojo validationspojo;
     static int userId;
     public static US06ObjectPojo object;
     public static US06ResponsePojo expectedData;
@@ -72,7 +71,7 @@ public class US06_API_StepDefs {
 
     @When("Vice Dean kayit islemi icin POST Request gonderilir ve Response alinir")
     public void viceDeanKayitIslemiIcinPOSTRequestGonderilirVeResponseAlinir() {
-        response = (Response) given(spec).body(payload).when().post("{first}/{second}");
+        response = given(spec).body(payload).when().post("{first}/{second}");
         response.prettyPrint();
         actualData = response.as(US06ResponsePojo.class);
     }
