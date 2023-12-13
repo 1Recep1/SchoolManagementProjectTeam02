@@ -1,7 +1,7 @@
 package pojos.US17Pojo;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import pojos.StudentInfoResponse_US17;
+//import pojos.StudentInfoResponse_US17;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 

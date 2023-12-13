@@ -1,4 +1,4 @@
-Feature: Dean, Vice Dean Ekleyebilmeli
+Feature: Admin, Vice Dean Ekleyebilmeli
 
   Scenario: TC01 Admin Web Sitesinde Vice Dean olusturabilmeliRB
     Given Kullanici web sitesine giderRB
